@@ -48,11 +48,23 @@ make clippy
 
 See `AGENTS.md` for the full validation matrix and isolated per-feature lanes.
 
+## Runtime payload
+
+Cargo-dist owns each release executable. The container workflow must reuse the
+exact Linux executable that cargo-dist produced.
+
+Run `make runtime-payload` after cargo-dist completes. Set the required build
+identity variables that the target reports when they are missing.
+
+The target writes `dist-payload/cli/payload-manifest.json`. Run
+`make runtime-payload-verify` before image assembly. Set `IMAGE`, and then run
+`make runtime-image`. Run `make runtime-image-verify` on a native worker.
+
 ## Policy schema
 
 The compile-time policy schema lives at `schema/policy-configuration.schema.json`.
 Each release publishes the same file as a release artifact for downstream digest
-checks.
+checks. The runtime payload includes the same source file and records its hash.
 
 ## Security
 

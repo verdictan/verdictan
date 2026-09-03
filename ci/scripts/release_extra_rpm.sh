@@ -13,11 +13,7 @@ target_base="${CARGO_TARGET_DIR:-target}"
 target_triple="${CARGO_BUILD_TARGET:-x86_64-unknown-linux-gnu}"
 release_bin="${target_base}/${target_triple}/dist/verdictan"
 if [[ ! -f "$release_bin" ]]; then
-  release_bin="${target_base}/release/verdictan"
-fi
-if [[ ! -f "$release_bin" ]]; then
-  echo "release_extra_rpm.sh: release binary not found" >&2
-  echo "  tried ${target_base}/${target_triple}/dist/verdictan and ${target_base}/release/verdictan" >&2
+  echo "release_extra_rpm.sh: canonical cargo-dist binary not found: ${release_bin}" >&2
   exit 1
 fi
 
