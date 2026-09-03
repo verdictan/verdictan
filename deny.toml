@@ -1,0 +1,66 @@
+# cargo-deny configuration
+# https://embarkstudios.github.io/cargo-deny/
+
+[graph]
+# Apply to each release target, including the MSVC Windows triple from DECISION-012.
+targets = [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-unknown-linux-gnu",
+    "x86_64-apple-darwin",
+    "aarch64-apple-darwin",
+    "x86_64-pc-windows-msvc",
+]
+
+[advisories]
+# cargo-deny 0.19+ treats vulnerability/notice advisories as errors by default.
+# It no longer supports a warning-only mode for unmaintained crates, so we leave
+# that classification to cargo-audit's default warning output instead of failing here.
+# Live ignore entries must include advisory ID plus reachability, owner, and expiry:
+# { id = "RUSTSEC-YYYY-NNNN", reason = "reachability: <why unreachable or accepted>; owner: <team>; expires: YYYY-MM-DD" },
+unmaintained = "none"
+yanked = "warn"
+unused-ignored-advisory = "warn"
+ignore = [
+    # Dev-only RSA test helper; not used on production TLS paths.
+    { id = "RUSTSEC-2023-0071", reason = "reachability: rsa 0.9.10 is a dev-dependency for unit tests only; owner: platform-security; expires: 2027-02-27" },
+]
+
+[licenses]
+# cargo-deny 0.19+ denies all licenses unless explicitly allowed.
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "0BSD",
+    "ISC",
+    "Zlib",
+    "Unicode-3.0",
+    "Unicode-DFS-2016",
+    "OpenSSL",
+    "BlueOak-1.0.0",
+    "CDLA-Permissive-2.0",
+    "MPL-2.0",
+    "BUSL-1.1",
+]
+confidence-threshold = 0.8
+
+[licenses.private]
+ignore = true
+
+[[licenses.clarify]]
+name = "ring"
+expression = "MIT AND ISC AND OpenSSL"
+license-files = [{ path = "LICENSE", hash = 0xbd0eed23 }]
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+highlight = "all"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []

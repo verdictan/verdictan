@@ -1,0 +1,13 @@
+pack:
+  name: agent-context-fabric-invalid-cache-l1-max-entries
+  version: "1.0.0"
+  enabled: true
+policies:
+  chain:
+    - prompt-injection
+agents:
+  - id: code-assistant
+    team: backend-eng
+    context_fabric:
+      cache:
+        l1_max_entries: 0

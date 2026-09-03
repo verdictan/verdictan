@@ -1,0 +1,51 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":gitSignOff"],
+  "timezone": "Europe/Madrid",
+  "labels": ["dependencies"],
+  "dependencyDashboard": true,
+  "minimumReleaseAge": "7 days",
+  "minimumReleaseAgeBehaviour": "timestamp-required",
+  "automergeType": "pr",
+  "platformAutomerge": false,
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 1,
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 4am on Tuesday"]
+  },
+  "packageRules": [
+    {
+      "description": "Ignore unusable bincode 3.0.0 release",
+      "matchManagers": ["cargo"],
+      "matchPackageNames": ["bincode"],
+      "allowedVersions": "!=3.0.0"
+    },
+    {
+      "description": "Group compatible Rust dependency updates",
+      "matchManagers": ["cargo"],
+      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "groupName": "Rust dependencies"
+    },
+    {
+      "description": "Automerge stable non-major updates after Jenkins passes",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "description": "Require approval for unstable minor dependency updates",
+      "matchManagers": ["cargo"],
+      "matchCurrentVersion": "/^0\\./",
+      "matchUpdateTypes": ["minor"],
+      "automerge": false,
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Require approval for major dependency updates",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "dependencyDashboardApproval": true
+    }
+  ]
+}

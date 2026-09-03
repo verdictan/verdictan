@@ -1,0 +1,68 @@
+name: nightly-analytics
+description: Generate nightly analytics report
+execution_target: platform
+agent_id: agent-analytics-001
+
+trigger:
+  type: cron
+  schedule: "0 2 * * *"
+
+variables:
+  DB_HOST: prod-db.internal
+  REPORT_FORMAT: pdf
+
+steps:
+  - id: fetch_data
+    action: tool_call
+    parameters:
+      tool_name: postgres-query
+      query: "SELECT * FROM metrics WHERE date = current_date"
+    timeout_seconds: 60
+    on_failure:
+      strategy: retry
+      max_retries: 3
+
+  - id: transform
+    action: script
+    depends_on: [fetch_data]
+    parameters:
+      script: "transform_metrics.py"
+      args: ["--format", "${REPORT_FORMAT}"]
+    timeout_seconds: 120
+
+  - id: check_quality
+    action: conditional
+    depends_on: [transform]
+    condition:
+      expr: "steps.transform.output.row_count > 0"
+      then_step: generate_report
+      else_step: notify_empty
+
+  - id: generate_report
+    action: llm_call
+    prompt: "Generate an analytics report from the following data: ${steps.transform.output}"
+    depends_on: [check_quality]
+    timeout_seconds: 180
+
+  - id: notify_empty
+    action: script
+    depends_on: [check_quality]
+    parameters:
+      script: "notify.py"
+      args: ["--message", "No data available for report"]
+
+  - id: approve_publish
+    action: human_approval
+    depends_on: [generate_report]
+    parameters:
+      approvers: ["team-lead"]
+      message: "Please review the nightly report before publishing"
+    timeout_seconds: 86400
+
+  - id: publish
+    action: tool_call
+    depends_on: [approve_publish]
+    parameters:
+      tool_name: s3-upload
+      action: upload
+      path: "/reports/nightly/${steps.fetch_data.output.date}.${REPORT_FORMAT}"

@@ -1,0 +1,14 @@
+pack:
+  name: agent-allowed-tools-wildcard-valid
+  version: "1.0.0"
+  enabled: true
+policies:
+  chain:
+    - prompt-injection
+agents:
+  - id: research-agent
+    team: data-science
+    mcp:
+      enabled: true
+      allowed_tools: "*"
+      allowed_resources: "*"

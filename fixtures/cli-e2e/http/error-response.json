@@ -1,0 +1,6 @@
+{
+  "error": {
+    "code": "fixture.error",
+    "message": "Deterministic CLI end-to-end fixture"
+  }
+}

@@ -1,0 +1,13 @@
+pack:
+  id: "cfg_fixture_human_oversight_unconditional"
+  name: "human-oversight-escalate-unconditional"
+  version: "0.1.0"
+  enabled: true
+  author: "local"
+  description: "human-oversight escalate without a when predicate (invalid)"
+policies:
+  chain:
+    - "human-oversight"
+policy:
+  human-oversight:
+    action: escalate

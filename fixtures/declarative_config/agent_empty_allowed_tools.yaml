@@ -1,0 +1,12 @@
+pack:
+  name: agent-empty-allowed-tools
+  version: "1.0.0"
+  enabled: true
+policies:
+  chain:
+    - prompt-injection
+agents:
+  - id: code-assistant
+    team: backend-eng
+    mcp:
+      allowed_tools: []

@@ -1,0 +1,318 @@
+# Provenance: curated US incorporated-place names for HIPAA Safe Harbor city detection.
+# Source basis: US Census Bureau population estimates for the largest US cities (2020s).
+# One city name per line. Comment lines start with "#".
+New York
+Los Angeles
+Chicago
+Houston
+Phoenix
+Philadelphia
+San Antonio
+San Diego
+Dallas
+San Jose
+Austin
+Jacksonville
+Fort Worth
+Columbus
+Charlotte
+San Francisco
+Indianapolis
+Seattle
+Denver
+Washington
+Boston
+El Paso
+Nashville
+Detroit
+Oklahoma City
+Portland
+Las Vegas
+Memphis
+Louisville
+Baltimore
+Milwaukee
+Albuquerque
+Tucson
+Fresno
+Mesa
+Sacramento
+Atlanta
+Kansas City
+Colorado Springs
+Miami
+Raleigh
+Omaha
+Long Beach
+Virginia Beach
+Oakland
+Minneapolis
+Tulsa
+Arlington
+Tampa
+New Orleans
+Wichita
+Cleveland
+Bakersfield
+Aurora
+Anaheim
+Honolulu
+Santa Ana
+Riverside
+Corpus Christi
+Lexington
+Henderson
+Stockton
+Saint Paul
+Cincinnati
+St. Louis
+Pittsburgh
+Greensboro
+Lincoln
+Anchorage
+Plano
+Orlando
+Irvine
+Newark
+Toledo
+Durham
+Chula Vista
+Fort Wayne
+Jersey City
+St. Petersburg
+Laredo
+Madison
+Chandler
+Buffalo
+Lubbock
+Scottsdale
+Reno
+Glendale
+Gilbert
+Winston-Salem
+North Las Vegas
+Norfolk
+Chesapeake
+Garland
+Irving
+Hialeah
+Fremont
+Boise
+Richmond
+Baton Rouge
+Spokane
+Des Moines
+Tacoma
+San Bernardino
+Modesto
+Fontana
+Santa Clarita
+Birmingham
+Oxnard
+Fayetteville
+Moreno Valley
+Rochester
+Huntington Beach
+Salt Lake City
+Grand Rapids
+Amarillo
+Yonkers
+Aurora
+Montgomery
+Akron
+Little Rock
+Huntsville
+Augusta
+Port St. Lucie
+Grand Prairie
+Columbus
+Tallahassee
+Overland Park
+Tempe
+McKinney
+Mobile
+Cape Coral
+Shreveport
+Frisco
+Knoxville
+Worcester
+Brownsville
+Vancouver
+Fort Lauderdale
+Sioux Falls
+Ontario
+Chattanooga
+Providence
+Newport News
+Rancho Cucamonga
+Santa Rosa
+Oceanside
+Salem
+Elk Grove
+Garden Grove
+Pembroke Pines
+Peoria
+Eugene
+Corona
+Cary
+Springfield
+Fort Collins
+Jackson
+Alexandria
+Hayward
+Clarksville
+Lakewood
+Lancaster
+Salinas
+Palmdale
+Hollywood
+Springfield
+Macon
+Kansas City
+Sunnyvale
+Pomona
+Killeen
+Escondido
+Pasadena
+Naperville
+Bellevue
+Joliet
+Murfreesboro
+Midland
+Rockford
+Paterson
+Savannah
+Bridgeport
+Torrance
+McAllen
+Syracuse
+Surprise
+Denton
+Roseville
+Thornton
+Miramar
+Pasadena
+Mesquite
+Olathe
+Dayton
+Carrollton
+Waco
+Orange
+Fullerton
+Charleston
+West Valley City
+Visalia
+Hampton
+Gainesville
+Warren
+Coral Springs
+Cedar Rapids
+Round Rock
+Sterling Heights
+Kent
+Columbia
+Santa Clara
+New Haven
+Stamford
+Concord
+Elizabeth
+Athens
+Thousand Oaks
+Lafayette
+Simi Valley
+Topeka
+Norman
+Fargo
+Wilmington
+Abilene
+Odessa
+Columbia
+Pearland
+Victorville
+Hartford
+Vallejo
+Allentown
+Berkeley
+Richardson
+Arvada
+Ann Arbor
+Cambridge
+Sugar Land
+Lansing
+Evansville
+College Station
+Fairfield
+Clearwater
+Beaumont
+Independence
+Provo
+West Jordan
+Murrieta
+Palm Bay
+El Monte
+Carlsbad
+North Charleston
+Temecula
+Clovis
+Springfield
+Meridian
+Westminster
+Costa Mesa
+High Point
+Manchester
+Pueblo
+Lakeland
+Pompano Beach
+West Palm Beach
+Antioch
+Everett
+Downey
+Lowell
+Centennial
+Elgin
+Richmond
+Peoria
+Broken Arrow
+Miami Gardens
+Billings
+Jurupa Valley
+Sandy Springs
+Gresham
+Lewisville
+Hillsboro
+Ventura
+Greeley
+Inglewood
+Waterbury
+League City
+Santa Maria
+Tyler
+Davie
+Daly City
+Boulder
+Allen
+West Covina
+Sparks
+Wichita Falls
+Green Bay
+San Mateo
+Norwalk
+Rialto
+Las Cruces
+Chico
+El Cajon
+Burbank
+South Bend
+Renton
+Vista
+Davenport
+Edinburg
+Tuscaloosa
+Carmel
+Spokane Valley
+San Angelo
+Vacaville
+Clinton
+Bend
+Hawthorne
+

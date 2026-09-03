@@ -1,0 +1,54 @@
+[workspace]
+members = ["cargo:."]
+
+# cargo-dist target planning metadata consumed by the Jenkins release pipeline.
+[dist]
+cargo-dist-version = "0.32.0"
+include = ["THIRD_PARTY_NOTICES.md"]
+ci = "github"
+installers = ["shell", "powershell", "homebrew"]
+tap = "verdictan/verdictan"
+targets = [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-unknown-linux-gnu",
+    "x86_64-apple-darwin",
+    "aarch64-apple-darwin",
+    "x86_64-pc-windows-msvc",
+]
+features = ["distributed", "otlp", "embedding-external"]
+install-updater = false
+unix-archive = ".tar.gz"
+cargo-auditable = true
+cargo-cyclonedx = true
+# Keep cargo-dist from generating another CI implementation. Jenkins consumes
+# the target matrix from `dist host --steps=create` directly.
+allow-dirty = ["ci"]
+
+[dist.github-custom-runners]
+global = "Linux"
+"x86_64-unknown-linux-gnu" = "Linux"
+"x86_64-apple-darwin" = "macOS"
+"aarch64-apple-darwin" = "macOS"
+
+[dist.github-custom-runners.aarch64-unknown-linux-gnu]
+runner = "Linux"
+host = "x86_64-unknown-linux-gnu"
+
+[dist.github-custom-runners.x86_64-pc-windows-msvc]
+runner = "Linux"
+host = "x86_64-unknown-linux-gnu"
+
+[[dist.extra-artifacts]]
+artifacts = ["dist-artifacts/policy-configuration.schema.json"]
+build = ["bash", "ci/scripts/stage_policy_schema_artifact.sh"]
+
+# cargo-dist reads every `artifacts` entry as a literal workspace-relative path.
+# It expands no glob and no version template. Each build script must stage its
+# output under `dist-artifacts/` with the constant name that is declared here.
+[[dist.extra-artifacts]]
+artifacts = ["dist-artifacts/verdictan-x86_64-unknown-linux-gnu.deb"]
+build = ["bash", "ci/scripts/release_extra_deb.sh"]
+
+[[dist.extra-artifacts]]
+artifacts = ["dist-artifacts/verdictan-x86_64-unknown-linux-gnu.rpm"]
+build = ["bash", "ci/scripts/release_extra_rpm.sh"]

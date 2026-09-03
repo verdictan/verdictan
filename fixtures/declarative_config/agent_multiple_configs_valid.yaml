@@ -1,0 +1,29 @@
+pack:
+  name: agent-multiple-configs-valid
+  version: "1.0.0"
+  enabled: true
+policies:
+  chain:
+    - prompt-injection
+context_fabric:
+  enabled: true
+  capture_mode: nudge
+mcp_server:
+  enabled: true
+  allowed_tools: "*"
+  allowed_resources: "*"
+agents:
+  - id: code-assistant
+    team: backend-eng
+    context_fabric:
+      capture_mode: off
+    mcp:
+      allowed_tools:
+        - context_search
+  - id: research-agent
+    team: data-science
+    context_fabric:
+      capture_mode: auto
+    mcp:
+      allowed_tools: "*"
+      allowed_resources: "*"

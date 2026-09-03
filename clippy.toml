@@ -1,0 +1,11 @@
+# Clippy configuration for verdictan
+# Placed here because clippy resolves config from Cargo.toml directory,
+# not repo root, for non-workspace projects.
+
+too-many-arguments-threshold = 8
+type-complexity-threshold = 300
+
+disallowed-methods = [
+    { path = "rand::random", reason = "use crate::support::test_rng::seeded_rng or seeded_u64 for reproducible test data" },
+    { path = "rand::thread_rng", reason = "use crate::support::test_rng::seeded_rng for reproducible test data" },
+]

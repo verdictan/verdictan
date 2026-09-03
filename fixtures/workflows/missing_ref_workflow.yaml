@@ -1,0 +1,13 @@
+name: missing-ref-workflow
+description: Workflow with missing depends_on reference
+execution_target: platform
+
+steps:
+  - id: step_a
+    action: script
+    parameters: {}
+
+  - id: step_b
+    action: script
+    depends_on: [nonexistent_step]
+    parameters: {}

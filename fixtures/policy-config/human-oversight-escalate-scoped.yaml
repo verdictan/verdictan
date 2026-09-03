@@ -1,0 +1,15 @@
+pack:
+  id: "cfg_fixture_human_oversight_scoped"
+  name: "human-oversight-escalate-scoped"
+  version: "0.1.0"
+  enabled: true
+  author: "local"
+  description: "human-oversight escalate with a scoped chain entry"
+policies:
+  chain:
+    - human-oversight:
+        when:
+          path: /v1/chat/completions
+policy:
+  human-oversight:
+    action: escalate

@@ -1,0 +1,31 @@
+# Third-Party Notices
+
+This file lists the licenses for dependencies of the `verdictan` crate.
+Regenerate it with:
+
+```bash
+cargo about generate about.hbs -o THIRD_PARTY_NOTICES.md
+```
+
+The Licensed Work itself is under BUSL-1.1. See [LICENSE](LICENSE).
+
+## Dependency inventory
+
+| Crate | Version | License |
+| --- | --- | --- |
+{{#each crates}}
+| {{package.name}} | {{package.version}} | {{license}} |
+{{/each}}
+
+## License texts
+
+{{#each overview}}
+### {{name}}
+
+Used by {{count}} crate(s).
+
+```
+{{text}}
+```
+
+{{/each}}

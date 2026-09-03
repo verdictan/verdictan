@@ -1,0 +1,11 @@
+pack:
+  name: agent-missing-id-invalid
+  version: "1.0.0"
+  enabled: true
+policies:
+  chain:
+    - prompt-injection
+agents:
+  - team: backend-eng
+    context_fabric:
+      capture_mode: nudge

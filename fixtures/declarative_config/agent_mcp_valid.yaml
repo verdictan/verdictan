@@ -1,0 +1,32 @@
+pack:
+  name: agent-mcp-valid
+  version: "1.0.0"
+  enabled: true
+policies:
+  chain:
+    - prompt-injection
+agents:
+  - id: code-assistant
+    team: backend-eng
+    mcp:
+      enabled: true
+      allowed_tools:
+        - context_search
+        - context_recent
+      allowed_resources:
+        - context://team
+        - history://sessions
+      session_limits:
+        max_prompt_bytes: 100000
+        max_test_inference_cost_usd: 1.25
+        max_concurrent_sessions: 10
+      tool_servers:
+        allow_unapproved: false
+        allowed_ids:
+          - approved-db-tool
+  - id: research-agent
+    team: data-science
+    mcp:
+      enabled: true
+      allowed_tools: "*"
+      allowed_resources: "*"

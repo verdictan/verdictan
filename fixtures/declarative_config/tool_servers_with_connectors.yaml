@@ -1,0 +1,46 @@
+pack:
+  name: multi-account-with-mcp-tools
+  version: "1.0.0"
+
+providers:
+  targets:
+    - id: openai-primary
+      provider: openai
+      model: gpt-5.4-mini
+      base_url: https://api.openai.com/v1
+      secret_key_ref:
+        store: OPENAI_API_KEY
+
+tool_servers:
+  - id: chrome-devtools-mcp
+    name: Chrome DevTools MCP
+    description: Browser automation and inspection via Chrome DevTools Protocol
+    transport:
+      kind: stdio
+      command: npx
+      args: ["@anthropic/chrome-devtools-mcp"]
+    mutability_class: mutating
+    trust_state: approved
+    containment:
+      network_policy: egress_restricted
+      timeout_ms: 60000
+      max_concurrent_calls: 3
+    labels:
+      team: frontend-platform
+      risk_tier: elevated
+
+  - id: filesystem-mcp
+    name: Filesystem MCP
+    description: Sandboxed filesystem read access
+    transport:
+      kind: stdio
+      command: npx
+      args: ["@anthropic/filesystem-mcp", "--read-only"]
+    mutability_class: read_only
+    trust_state: approved
+    containment:
+      network_policy: isolated
+      timeout_ms: 10000
+      max_concurrent_calls: 10
+    labels:
+      team: platform

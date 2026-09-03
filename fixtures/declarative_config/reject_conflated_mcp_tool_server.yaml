@@ -1,0 +1,26 @@
+pack:
+  name: conflation-attempt
+  version: "0.0.1"
+
+# This should be REJECTED because it tries to use providers.targets[].mcp
+# as a durable tool server definition, which violates boundary separation.
+providers:
+  targets:
+    - id: chrome-devtools-mcp
+      provider: openai
+      model: gpt-5.4-mini
+      base_url: https://api.openai.com/v1
+      secret_key_ref:
+        store: OPENAI_API_KEY
+      mcp:
+        endpoint: http://localhost:3000
+        transport: sse
+
+tool_servers:
+  - id: chrome-devtools-mcp
+    name: Chrome DevTools (conflated)
+    transport:
+      kind: sse
+      url: http://localhost:3000
+    mutability_class: mutating
+    trust_state: approved

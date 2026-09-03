@@ -1,0 +1,12 @@
+pack:
+  name: agent-invalid-threshold-range
+  version: "1.0.0"
+  enabled: true
+policies:
+  chain:
+    - prompt-injection
+agents:
+  - id: code-assistant
+    team: backend-eng
+    context_fabric:
+      dedup_similarity_threshold: 1.2

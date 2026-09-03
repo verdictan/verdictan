@@ -1,0 +1,3 @@
+@Library('keeptrusts') _
+
+verdictanPipeline()

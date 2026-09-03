@@ -1,0 +1,12 @@
+pack:
+  name: tagged-config
+  version: "1.0.0"
+  tags:
+    tier: team
+    owner: platform
+tags:
+  team: billing
+  environment: prod
+policies:
+  chain:
+    - prompt-injection

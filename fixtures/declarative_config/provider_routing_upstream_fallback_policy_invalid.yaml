@@ -1,0 +1,21 @@
+pack:
+  name: legacy-upstream-fallback-policy
+  version: "0.1.0"
+  enabled: true
+
+providers:
+  targets:
+    - id: primary-openai
+      provider: openai
+      model: gpt-5.4-mini
+      base_url: https://api.openai.com/v1
+      secret_key_ref:
+        store: OPENAI_API_KEY
+      region: eu-west
+  routing:
+    strategy: ordered
+    require_region: eu-west
+    upstream_fallback_policy: same_group_then_global
+
+policies:
+  chain: []

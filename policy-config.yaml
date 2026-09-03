@@ -1,0 +1,99 @@
+pack:
+  id: "cfg_default_guardrails"
+  name: "default-guardrails"
+  version: "1.0.0"
+  enabled: true
+  author: "console"
+  description: "Default fallback policy configuration with enforcement policies and an MCP bridge target"
+knowledge:
+  runtime:
+    enabled: true
+hosted_gateway:
+  local_access:
+    enabled: true
+    allowed_roots:
+      - "/sandbox"
+    mode: "read_write"
+    max_file_bytes: 1048576
+    exclude_globs:
+      - "*.secret"
+      - "*.key"
+      - ".env*"
+    allowed_commands:
+      - "ls"
+      - "cat"
+      - "echo"
+      - "wc"
+      - "grep"
+      - "find"
+      - "mkdir"
+      - "touch"
+    blocked_commands:
+      - "rm -rf /"
+      - "dd if="
+      - "mkfs"
+      - "> /dev/"
+    approval_required_risk_levels:
+      - "destructive"
+      - "critical"
+    command_timeout_seconds: 30
+    max_output_bytes: 65536
+providers:
+  targets:
+    - id: "openai-default"
+      provider: "openai"
+      model: "gpt-5.4-mini"
+      required: false
+      secret_key_ref:
+        env: "OPENAI_API_KEY"
+    - id: "anthropic-default"
+      provider: "anthropic"
+      provider_type: "anthropic"
+      format: "anthropic"
+      model: "claude-sonnet-4-20250514"
+      base_url: "https://api.anthropic.com"
+      required: false
+      secret_key_ref:
+        env: "ANTHROPIC_API_KEY"
+      api_key_header: "x-api-key"
+      api_key_prefix: ""
+    - id: "mistral-default"
+      provider: "mistral"
+      model: "mistral-large-latest"
+      required: false
+      secret_key_ref:
+        env: "MISTRAL_API_KEY"
+    - id: "gemini-default"
+      provider: "gemini"
+      model: "gemini-2.0-flash"
+      base_url: "https://generativelanguage.googleapis.com"
+      required: false
+      secret_key_ref:
+        env: "GOOGLE_AI_API_KEY"
+    - id: "github-models"
+      provider: "github"
+      model: "gpt-5.4-mini"
+      required: false
+      secret_key_ref:
+        env: "GITHUB_TOKEN"
+    - id: "mcp-tools"
+      provider: "mcp"
+      base_url: "http://verdictan-mcp:8080"
+  routing:
+    strategy: "ordered"
+    order: ["openai-default", "anthropic-default", "gemini-default", "mistral-default", "github-models"]
+    allow_fallbacks: true
+policies:
+  chain:
+    - "upl-filter"
+    - "safety-filter"
+    - "human-oversight"
+
+policy:
+  upl-filter:
+    blocked_patterns: ["you should sue", "file this motion", "sign here"]
+    require_disclaimer: true
+  safety-filter:
+    block_if: ["self-harm", "violence", "illegal_activities"]
+  human-oversight:
+    action: "escalate"

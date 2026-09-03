@@ -1,0 +1,22 @@
+name: invalid-cycle-workflow
+description: Workflow with circular dependencies (should fail validation)
+execution_target: platform
+
+steps:
+  - id: analyze
+    action: llm_call
+    depends_on: [report]
+    prompt: "Analyze the report data."
+    timeout_seconds: 60
+
+  - id: transform
+    action: script
+    depends_on: [analyze]
+    parameters:
+      script: "transform.py"
+
+  - id: report
+    action: llm_call
+    depends_on: [transform]
+    prompt: "Generate a report from transformed data."
+    timeout_seconds: 60

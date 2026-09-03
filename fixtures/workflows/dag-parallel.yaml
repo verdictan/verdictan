@@ -1,0 +1,62 @@
+name: parallel-data-pipeline
+description: DAG workflow with parallel branches that converge
+execution_target: platform
+
+variables:
+  OUTPUT_DIR: "/data/output"
+
+steps:
+  - id: ingest
+    action: tool_call
+    parameters:
+      tool_name: data-lake-fetch
+      action: fetch
+      dataset: raw_events
+    timeout_seconds: 60
+
+  - id: branch_a_transform
+    action: script
+    depends_on: [ingest]
+    parameters:
+      script: "transform_revenue.py"
+      args: ["--output", "${OUTPUT_DIR}/revenue"]
+    timeout_seconds: 300
+
+  - id: branch_b_transform
+    action: script
+    depends_on: [ingest]
+    parameters:
+      script: "transform_engagement.py"
+      args: ["--output", "${OUTPUT_DIR}/engagement"]
+    timeout_seconds: 300
+
+  - id: branch_c_enrich
+    action: llm_call
+    depends_on: [ingest]
+    prompt: "Classify each event by customer segment."
+    timeout_seconds: 180
+
+  - id: merge_results
+    action: script
+    depends_on: [branch_a_transform, branch_b_transform, branch_c_enrich]
+    parameters:
+      script: "merge_branches.py"
+      args: ["--revenue", "${OUTPUT_DIR}/revenue", "--engagement", "${OUTPUT_DIR}/engagement"]
+    timeout_seconds: 120
+
+  - id: generate_dashboard
+    action: llm_call
+    depends_on: [merge_results]
+    prompt: "Generate a natural-language executive summary from the merged analytics data."
+    timeout_seconds: 120
+
+  - id: publish
+    action: tool_call
+    depends_on: [generate_dashboard]
+    parameters:
+      tool_name: s3-upload
+      action: upload
+      path: "${OUTPUT_DIR}/dashboard.html"
+    on_failure:
+      strategy: retry
+      max_retries: 3

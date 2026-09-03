@@ -1,0 +1,16 @@
+name: interpolation-test
+description: Workflow testing variable interpolation
+execution_target: platform
+
+variables:
+  ENV_NAME: production
+  TIMEOUT: "30"
+
+steps:
+  - id: deploy
+    action: script
+    parameters:
+      env: "${ENV_NAME}"
+      host: "${DB_HOST:-localhost}"
+      timeout: "${TIMEOUT}"
+      missing: "${UNSET_VAR}"

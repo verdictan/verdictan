@@ -1,0 +1,21 @@
+pack:
+  id: "cfg_demo_prompt_injection_detection"
+  name: "demo-prompt-injection-detection"
+  version: "0.1.0"
+  enabled: true
+  author: "local"
+  description: "prompt-injection-detection demo"
+policies:
+  chain:
+    - "prompt-injection"
+
+policy:
+  prompt-injection:
+    embedding_threshold: 0.75
+    encoding:
+      decode_base64: true
+      normalize_unicode: true
+      detect_homoglyphs: true
+    response:
+      action: block
+      message: "Request blocked: potential prompt injection detected"

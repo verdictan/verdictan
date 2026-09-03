@@ -1,0 +1,44 @@
+pack:
+  name: agent-both-blocks-valid
+  version: "1.0.0"
+  enabled: true
+policies:
+  chain:
+    - prompt-injection
+context_fabric:
+  enabled: true
+  capture_mode: auto
+  pool_max_entries: 900
+  dedup_similarity_threshold: 0.91
+mcp_server:
+  enabled: true
+  allowed_tools:
+    - gateway_default_tool
+    - context_search
+  allowed_resources: "*"
+  session_limits:
+    max_prompt_bytes: 64000
+    max_test_inference_cost_usd: 5.0
+    max_concurrent_sessions: 4
+  tool_servers:
+    allow_unapproved: true
+    allowed_ids:
+      - approved-db-tool
+      - gateway-db-tool
+agents:
+  - id: code-assistant
+    team: backend-eng
+    context_fabric:
+      capture_mode: off
+      direct_answer_threshold: 0.9
+    mcp:
+      allowed_tools:
+        - context_search
+      session_limits:
+        max_prompt_bytes: 120000
+        max_test_inference_cost_usd: 7.0
+        max_concurrent_sessions: 8
+      tool_servers:
+        allow_unapproved: true
+        allowed_ids:
+          - approved-db-tool

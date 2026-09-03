@@ -1,0 +1,66 @@
+name: content-review-pipeline
+description: Multi-step pipeline with LLM generation and human approval
+execution_target: platform
+agent_id: agent-content-001
+
+trigger:
+  type: cron
+  schedule: "0 9 * * 1"
+
+variables:
+  AUDIENCE: enterprise
+  MAX_TOKENS: "2048"
+
+steps:
+  - id: gather_context
+    action: tool_call
+    parameters:
+      tool_name: crm-fetch
+      action: fetch
+      query: "recent_interactions"
+    timeout_seconds: 30
+    on_failure:
+      strategy: retry
+      max_retries: 2
+
+  - id: draft_content
+    action: llm_call
+    depends_on: [gather_context]
+    prompt: "Draft a weekly update email for ${AUDIENCE} customers based on the gathered context."
+    parameters:
+      max_tokens: "${MAX_TOKENS}"
+    timeout_seconds: 120
+
+  - id: quality_check
+    action: conditional
+    depends_on: [draft_content]
+    condition:
+      expr: "steps.draft_content.output.word_count > 50"
+      then_step: review_approval
+      else_step: regenerate
+
+  - id: regenerate
+    action: llm_call
+    depends_on: [quality_check]
+    prompt: "The previous draft was too short. Generate a more detailed weekly update."
+    timeout_seconds: 120
+    on_failure:
+      strategy: fail
+
+  - id: review_approval
+    action: human_approval
+    depends_on: [quality_check]
+    parameters:
+      approvers: ["content-lead", "marketing-manager"]
+      message: "Please review the weekly customer email before sending."
+    timeout_seconds: 172800
+
+  - id: send_email
+    action: tool_call
+    depends_on: [review_approval]
+    parameters:
+      tool_name: email-send
+      action: send
+      template: "weekly-update"
+    on_failure:
+      strategy: continue

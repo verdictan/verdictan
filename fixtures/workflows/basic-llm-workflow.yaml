@@ -1,0 +1,21 @@
+name: basic-llm-summary
+description: Simple single-step LLM summarization workflow
+execution_target: platform
+agent_id: agent-summarizer-001
+
+trigger:
+  type: manual
+
+variables:
+  MODEL_TEMP: "0.7"
+
+steps:
+  - id: summarize
+    action: llm_call
+    prompt: "Summarize the following document in three bullet points."
+    parameters:
+      temperature: "${MODEL_TEMP}"
+    timeout_seconds: 60
+    on_failure:
+      strategy: retry
+      max_retries: 2

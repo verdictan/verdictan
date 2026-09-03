@@ -1,0 +1,19 @@
+name: cycle-workflow
+description: Workflow with a dependency cycle (invalid)
+execution_target: platform
+
+steps:
+  - id: step_a
+    action: script
+    depends_on: [step_c]
+    parameters: {}
+
+  - id: step_b
+    action: script
+    depends_on: [step_a]
+    parameters: {}
+
+  - id: step_c
+    action: script
+    depends_on: [step_b]
+    parameters: {}

@@ -1,0 +1,12 @@
+{
+  "coverage": {
+    "enabled": true,
+    "lines": 72.45,
+    "branches": 50.24,
+    "functions": 74.11,
+    "modifiedLines": 90
+  },
+  "lighthouse": {
+    "enabled": false
+  }
+}

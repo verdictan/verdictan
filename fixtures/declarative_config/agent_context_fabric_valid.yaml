@@ -1,0 +1,30 @@
+pack:
+  name: agent-context-fabric-valid
+  version: "1.0.0"
+  enabled: true
+policies:
+  chain:
+    - prompt-injection
+agents:
+  - id: code-assistant
+    team: backend-eng
+    context_fabric:
+      enabled: true
+      capture_mode: auto
+      capture_exclude_patterns:
+        - "*.env"
+        - "*secret*"
+      pool_max_entries: 500
+      ttl:
+        auto_captured_days: 7
+        manual_days: 30
+        verified_days: 90
+      dedup_similarity_threshold: 0.95
+      compaction_similarity_threshold: 0.92
+      pii_detection: true
+      dlp_filter: true
+      confidence:
+        votes_for_verified: 2
+        auto_flag_stale_after_days: 14
+      branch_inheritance: true
+      direct_answer_threshold: 0.85

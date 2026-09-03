@@ -1,0 +1,70 @@
+pack:
+  name: agent-context-fabric-full-valid
+  version: "1.0.0"
+  enabled: true
+policies:
+  chain:
+    - prompt-injection
+context_fabric:
+  capture_mode: nudge
+  cache:
+    l1_enabled: false
+    l1_max_entries: 250
+    redis_url: redis://cache.internal:6379/0
+    l2_bloom_false_positive_rate: 0.05
+    vector_confidence_threshold: 0.7
+    precompute_enabled: true
+    precompute_debounce_ms: 500
+    hnsw_ef_construct: 192
+    hnsw_m: 24
+  conflict_resolution_strategy: SourceTypeWins
+  multi_gateway:
+    enabled: true
+    peers:
+      - gateway_id: 00000000-0000-4000-a000-0000000000a1
+        endpoint: https://gateway-a.verdictan.example/internal/crdt/sync
+      - gateway_id: 00000000-0000-4000-a000-0000000000b1
+        endpoint: https://gateway-b.verdictan.example/internal/crdt/sync
+    sync_interval_ms: 250
+    max_partition_buffer_age: 24h
+agents:
+  - id: code-assistant
+    team: backend-eng
+    context_fabric:
+      enabled: true
+      capture_mode: auto
+      capture_exclude_patterns:
+        - "*.env"
+        - "*secret*"
+      pool_max_entries: 500
+      ttl:
+        auto_captured_days: 7
+        manual_days: 30
+        verified_days: 90
+      dedup_similarity_threshold: 0.95
+      compaction_similarity_threshold: 0.92
+      pii_detection: true
+      dlp_filter: true
+      confidence:
+        votes_for_verified: 2
+        auto_flag_stale_after_days: 14
+      branch_inheritance: true
+      direct_answer_threshold: 0.85
+      cache:
+        l1_enabled: true
+        l1_max_entries: 500
+        redis_url: redis://branch-cache.internal:6379/1
+        l2_bloom_false_positive_rate: 0.02
+        vector_confidence_threshold: 0.82
+        precompute_enabled: false
+        precompute_debounce_ms: 1500
+        hnsw_ef_construct: 256
+        hnsw_m: 32
+      conflict_resolution_strategy: VoteWins
+      multi_gateway:
+        enabled: false
+        peers:
+          - gateway_id: 00000000-0000-4000-a000-0000000000c1
+            endpoint: https://branch-gateway.verdictan.example/internal/crdt/sync
+        sync_interval_ms: 500
+        max_partition_buffer_age: 48h

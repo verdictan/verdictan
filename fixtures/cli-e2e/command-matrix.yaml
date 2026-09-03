@@ -1,0 +1,1420 @@
+- path: agent create
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/agent
+  behavior_test: commands::agent_create::tests::create_body_empty_name
+- path: agent delete
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/agent
+  behavior_test: commands::agent_delete::tests::delete_path_formatting
+- path: agent get
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/agent
+  behavior_test: commands::agent_get::tests::get_path_formatting
+- path: agent link-gateway
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/agent
+  behavior_test: commands::agent_link_gateway::tests::link_body_construction
+- path: agent list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/agent
+  behavior_test: commands::agent_list::tests::list_path_no_filter
+- path: agent unlink-gateway
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/agent
+  behavior_test: commands::agent_unlink_gateway::tests::unlink_path_formatting
+- path: agent update
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/agent
+  behavior_test: commands::agent_update::tests::parse_update_response_id
+- path: auth login
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/auth
+  behavior_test: commands::auth_login::tests::resolve_login_mode_browser_non_terminal_fails
+- path: auth logout
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/auth
+  behavior_test: commands::auth_logout::tests::logout_payload_contains_expected_fields
+- path: auth token create
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/auth
+  behavior_test: commands::auth_token::tests::args_debug_impl_create
+- path: auth token list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/auth
+  behavior_test: commands::auth_token::tests::args_debug_impl_list
+- path: auth token revoke
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/auth
+  behavior_test: commands::auth_token::tests::create_success_lines_and_revoke_success_line_format_expected_output
+- path: auth whoami
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/auth
+  behavior_test: commands::auth_whoami::tests::whoami_lines_include_optional_sections_when_present
+- path: cache clear
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/cache
+  behavior_test: commands::cache::tests::cache_clear_args_yes_false
+- path: cache inspect
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/cache
+  behavior_test: commands::cache::tests::cache_inspect_args_key_preserved
+- path: cache list
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/cache
+  behavior_test: commands::cache::tests::cache_list_args_by_size_true
+- path: cache stats
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/cache
+  behavior_test: commands::cache::tests::format_table_key_truncates_at_char_boundaries
+- path: config validate
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/config
+  behavior_test: commands::config_validate::tests::command_helper_coverage_validation_error_counts_failures
+- path: configure get region
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/configure
+  behavior_test: commands::configure::tests::upsert_profile_region_creates_nested_profiles_mapping
+- path: configure list-profiles
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/configure
+  behavior_test: commands::configure::tests::list_profiles_includes_default_without_config_or_credentials
+- path: configure set region
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/configure
+  behavior_test: config::tests::lazy_config_new_does_not_resolve_eagerly
+- path: control apply
+  execution_class: service-manager
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: linux-and-macos-plan-only
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/control
+  behavior_test: commands::control_apply::tests::build_apply_json_summary_no_failures
+- path: control export
+  execution_class: service-manager
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: linux-and-macos-plan-only
+  destructive_boundary: none
+  fixture_owner: cli-e2e/control
+  behavior_test: commands::control_export::tests::build_export_manifest_covers_partial_errors_and_mapping_fallbacks
+- path: control plan
+  execution_class: service-manager
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: linux-and-macos-plan-only
+  destructive_boundary: none
+  fixture_owner: cli-e2e/control
+  behavior_test: commands::control_plan::tests::build_plan_json_counts_actions_and_preserves_ops
+- path: doctor
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/doctor
+  behavior_test: commands::doctor::tests::check_api_connectivity_fails_when_client_cannot_be_created
+- path: escalation claim
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/escalation
+  behavior_test: commands::escalation_claim::tests::claim_empty_body_serializes
+- path: escalation get
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/escalation
+  behavior_test: commands::escalation_get::tests::get_path_with_context
+- path: escalation list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/escalation
+  behavior_test: commands::escalation_list::tests::parse_escalation_field_defaults
+- path: escalation resolve
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/escalation
+  behavior_test: commands::escalation_resolve::tests::resolve_path_formatting
+- path: escalation unclaim
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/escalation
+  behavior_test: commands::escalation_unclaim::tests::unclaim_empty_body_serializes
+- path: events export
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/events
+  behavior_test: commands::events_export::tests::build_export_path_empty_since
+- path: events tail
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/events
+  behavior_test: commands::events_tail::tests::build_query_all_params_present
+- path: export-jobs create
+  execution_class: service-manager
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: linux-and-macos-plan-only
+  destructive_boundary: none
+  fixture_owner: cli-e2e/export-jobs
+  behavior_test: commands::export_job_create::tests::create_payload_construction
+- path: export-jobs download
+  execution_class: service-manager
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: linux-and-macos-plan-only
+  destructive_boundary: none
+  fixture_owner: cli-e2e/export-jobs
+  behavior_test: commands::export_job_download::tests::download_path_formatting
+- path: export-jobs get
+  execution_class: service-manager
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: linux-and-macos-plan-only
+  destructive_boundary: none
+  fixture_owner: cli-e2e/export-jobs
+  behavior_test: commands::export_job_get::tests::args_debug_impl
+- path: export-jobs list
+  execution_class: service-manager
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: linux-and-macos-plan-only
+  destructive_boundary: none
+  fixture_owner: cli-e2e/export-jobs
+  behavior_test: commands::export_job_list::tests::parse_jobs_empty
+- path: gateway check
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_check::tests::build_report_lines_includes_config_name_and_version
+- path: gateway config
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_config::tests::config_url_with_port_and_path
+- path: gateway create
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_create::tests::command_helper_coverage_resolve_gateway_name_with_priority_chain
+- path: gateway diff
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_diff::tests::diff_output_json_round_trip
+- path: gateway inspect
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_inspect::tests::inspect_json_empty_supervisor
+- path: gateway install
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_install::tests::command_helper_coverage_populate_service_runtime_env_uses_defaults_and_copies
+- path: gateway list
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_list::tests::command_helper_coverage_run_async_dispatches_remote_list
+- path: gateway reconcile
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_reconcile::tests::reconcile_instance_result_serializes_to_json
+- path: gateway reload
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_reload::tests::parse_reload_config_extracts_all_fields
+- path: gateway revert
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_revert::tests::revert_rejects_reload_2xx_with_digest_mismatch_and_retains_evidence
+- path: gateway run
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_run::tests::build_runtime_config_reads_process_env_and_uses_default_upstream_auth_parts
+- path: gateway start
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_start::tests::run_starts_managed_service_and_records_success
+- path: gateway status
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_status::tests::format_history_entry_includes_target_active_and_reason
+- path: gateway stop
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_stop::tests::run_records_failed_stop_when_service_manager_errors
+- path: gateway uninstall
+  execution_class: gateway-runtime
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_uninstall::tests::args_debug_impl
+- path: gateway upgrade apply
+  execution_class: self-update
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/gateway
+  behavior_test: commands::gateway_upgrade::tests::build_plan_uses_existing_runtime_as_rollback_checkpoint
+- path: gateway upgrade plan
+  execution_class: self-update
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: supervisor::state_store::tests::rollout_plan_serde_round_trip
+- path: gateway upgrade rollback
+  execution_class: self-update
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/gateway
+  behavior_test: supervisor::state_store::tests::action_checkpoint_round_trip
+- path: gateway upgrade status
+  execution_class: self-update
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/gateway
+  behavior_test: gateway::runtime_upgrade::tests::runtime_upgrade_status_copies_plan_fields
+- path: history condense
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/history
+  behavior_test: commands::history_condense::tests::command_helper_coverage_synthesize_condensed_text_can_include_blocked_entries
+- path: history export
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/history
+  behavior_test: commands::history_export::tests::append_validated_page_rejects_duplicate_entry_ids_across_pages
+- path: history get-session
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/history
+  behavior_test: commands::history_get_session::tests::get_session_path_encodes_special_chars
+- path: history learn
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/history
+  behavior_test: commands::history_learn::tests::session_id_encoding_in_learn_path
+- path: history list-sessions
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/history
+  behavior_test: commands::history_list_sessions::tests::command_helper_coverage_build_sessions_path_includes_all_server_filters
+- path: history replay
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/history
+  behavior_test: commands::history_replay::tests::replay_body_with_gateway_id
+- path: history search
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/history
+  behavior_test: commands::history_search::tests::build_search_path_includes_all_filters
+- path: history share
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/history
+  behavior_test: commands::history_share::tests::share_body_construction
+- path: history stats
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/history
+  behavior_test: commands::history_stats::tests::build_stats_path_includes_all_filters
+- path: history tag
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/history
+  behavior_test: commands::history_tag::tests::add_tag_body_construction
+- path: iam policy create
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/iam
+  behavior_test: commands::iam_policy_create::tests::parse_policy_create_response
+- path: iam policy delete
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/iam
+  behavior_test: commands::iam_policy_delete::tests::delete_path_formatting
+- path: iam policy get
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/iam
+  behavior_test: commands::iam_policy_get::tests::get_path_formatting
+- path: iam policy list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/iam
+  behavior_test: commands::iam_policy_list::tests::list_path
+- path: iam policy update
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/iam
+  behavior_test: commands::iam_policy_update::tests::parse_updated_response
+- path: init
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/init
+  behavior_test: commands::init::tests::init_rejects_removed_solution_template_without_fallback
+- path: policy apply
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/policy
+  behavior_test: commands::policy_common::tests::parse_policy_specs_value_accepts_bundle
+- path: policy deploy
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/policy
+  behavior_test: commands::policy_deploy::tests::rollout_applied_errors_when_gateway_is_missing
+- path: policy diff
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/policy
+  behavior_test: commands::policy_common::tests::flatten_policy_statements_extracts_statement_documents
+- path: policy evaluate
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/policy
+  behavior_test: policy::assertions::tests::evaluate_pass_policy_all_fails_on_blocking_failure
+- path: policy export
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/policy
+  behavior_test: commands::policy_common::tests::lint_policy_specs_reports_missing_statements
+- path: policy lint
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/policy
+  behavior_test: commands::policy_lint::tests::command_helper_coverage_lints_abac_bundle
+- path: policy push
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/policy
+  behavior_test: commands::policy_push::tests::run_async_posts_expected_version_body
+- path: policy test
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/policy
+  behavior_test: commands::policy_test::tests::policy_test_prints_human_readable_pass_fail_summary_for_assertion_mismatches
+- path: regions current
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/regions
+  behavior_test: commands::regions::tests::requested_region_scope_global_when_region_is_global_or_missing
+- path: regions list
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/regions
+  behavior_test: commands::regions::tests::validate_list_filters_rejects_conflicting_enabled_and_disabled
+- path: regions status
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/regions
+  behavior_test: commands::regions::tests::resolve_region_context_prefers_env_over_profile_and_legacy_defaults
+- path: regions switch
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/regions
+  behavior_test: commands::regions::tests::resolve_token_from_args
+- path: regions use
+  execution_class: local
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: not-required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/regions
+  behavior_test: commands::regions::tests::truncate_exact_length_no_ellipsis
+- path: role attach-policy
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/role
+  behavior_test: commands::role_attach_policy::tests::attach_body_construction
+- path: role create
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/role
+  behavior_test: commands::role_create::tests::create_body_name_only
+- path: role delete
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/role
+  behavior_test: commands::role_delete::tests::delete_path_formatting
+- path: role detach-policy
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/role
+  behavior_test: commands::role_detach_policy::tests::detach_path_formatting
+- path: role get
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/role
+  behavior_test: commands::role_get::tests::get_path_formatting
+- path: role list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/role
+  behavior_test: commands::role_list::tests::parse_roles_empty
+- path: role show-actions
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/role
+  behavior_test: commands::role_show_actions::tests::effective_actions_path_formatting
+- path: role show-assignments
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/role
+  behavior_test: commands::role_show_assignments::tests::assignments_path_formatting
+- path: role update
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/role
+  behavior_test: commands::role_update::tests::parse_not_updated_response
+- path: secret create
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/secret
+  behavior_test: commands::secret_create::tests::create_body_required_fields
+- path: secret delete
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/secret
+  behavior_test: commands::secret_delete::tests::delete_path_formatting
+- path: secret get
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/secret
+  behavior_test: commands::secret_get::tests::get_path_formatting
+- path: secret list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/secret
+  behavior_test: commands::secret_list::tests::parse_secrets_response
+- path: secret update
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/secret
+  behavior_test: commands::secret_update::tests::empty_update_body_detected
+- path: secrets add
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/secrets
+  behavior_test: commands::secrets_add::tests::command_helper_coverage_run_rejects_invalid_secret_names
+- path: secrets status
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/secrets
+  behavior_test: commands::secrets_status::tests::command_helper_coverage_resolve_status_marks_empty_reference_unconfigured
+- path: spend budget create
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/spend
+  behavior_test: commands::budget_create::tests::create_body_large_budget
+- path: spend budget delete
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/spend
+  behavior_test: commands::budget_delete::tests::delete_path_formatting
+- path: spend budget get
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/spend
+  behavior_test: commands::budget_get::tests::get_path_formatting
+- path: spend budget list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/spend
+  behavior_test: commands::budget_list::tests::command_helper_coverage_render_budget_list_prints_rows_or_empty_message
+- path: spend budget update
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/spend
+  behavior_test: commands::budget_update::tests::update_path_formatting
+- path: spend provider-budget create
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/spend
+  behavior_test: commands::provider_budget_create::tests::create_body_construction
+- path: spend provider-budget delete
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/spend
+  behavior_test: commands::provider_budget_delete::tests::delete_path_formatting
+- path: spend provider-budget get
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/spend
+  behavior_test: commands::provider_budget_get::tests::get_path_formatting
+- path: spend provider-budget list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/spend
+  behavior_test: commands::provider_budget_list::tests::parse_budgets_empty
+- path: spend summary
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/spend
+  behavior_test: commands::spend_summary::tests::build_spend_summary_path_group_by_only
+- path: team add-member
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/team
+  behavior_test: commands::team_add_member::tests::add_member_body_email_only
+- path: team assign-role
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/team
+  behavior_test: commands::team_assign_role::tests::assign_role_body_construction
+- path: team create
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/team
+  behavior_test: commands::team_create::tests::create_body_name_only
+- path: team delete
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/team
+  behavior_test: commands::team_delete::tests::delete_path_formatting
+- path: team detach-role
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/team
+  behavior_test: commands::team_detach_role::tests::detach_path_formatting
+- path: team get
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/team
+  behavior_test: commands::team_get::tests::get_path_formatting
+- path: team list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/team
+  behavior_test: commands::team_list::tests::parse_teams_empty
+- path: team list-members
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/team
+  behavior_test: commands::team_list_members::tests::list_members_path_formatting
+- path: team remove-member
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/team
+  behavior_test: commands::team_remove_member::tests::remove_member_path_formatting
+- path: team update
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/team
+  behavior_test: commands::team_update::tests::empty_update_body_detected
+- path: token clone
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/token
+  behavior_test: commands::token::tests::command_helper_coverage_build_clone_payload_requires_reason
+- path: token create
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/token
+  behavior_test: commands::token::tests::command_helper_coverage_build_binding_overrides_rejects_blank_model_filter
+- path: token delete
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/token
+  behavior_test: commands::token::tests::command_helper_coverage_build_clone_payload_trims_reason_and_supports_expiry_fields
+- path: token emergency-revoke
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: help-only; behavior-covered-by-isolated-handler-tests
+  fixture_owner: cli-e2e/token
+  behavior_test: commands::token::tests::command_helper_coverage_build_update_payload_rejects_empty_changes
+- path: token exchange-code
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/token
+  behavior_test: commands::token_exchange_code::tests::build_request_includes_runtime_bindings_when_present
+- path: token get
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/token
+  behavior_test: commands::token::tests::command_helper_coverage_token_alert_state_handles_expiry_budget_and_request_thresholds
+- path: token list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/token
+  behavior_test: commands::token::tests::command_helper_coverage_build_update_payload_trims_and_includes_mutable_fields
+- path: token rotate
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/token
+  behavior_test: commands::token::tests::command_helper_coverage_insert_string_binding_and_parse_relative_duration_seconds
+- path: token update
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/token
+  behavior_test: commands::token::tests::command_helper_coverage_parse_metadata_json_and_policy_ids_validate_shape
+- path: token validate
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/token
+  behavior_test: commands::token::tests::worker6_token_parse_metadata_json_rejects_invalid_json
+- path: trail export
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/trail
+  behavior_test: trail::export::tests::command_helper_coverage_build_export_events_path_encodes_filters
+- path: trail lookup
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/trail
+  behavior_test: trail::lookup::tests::command_helper_coverage_build_events_lookup_path_includes_all_filters
+- path: trail verify
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/trail
+  behavior_test: trail::verify::tests::command_helper_coverage_build_single_event_verify_result_includes_event_payload
+- path: user assign-role
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/user
+  behavior_test: commands::user_assign_role::tests::assign_role_body_construction
+- path: user detach-role
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/user
+  behavior_test: commands::user_detach_role::tests::detach_role_body_construction
+- path: user get
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/user
+  behavior_test: commands::user_get::tests::get_path_formatting
+- path: user invite
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/user
+  behavior_test: commands::user_invite::tests::invite_body_required_fields_only
+- path: user list
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/user
+  behavior_test: commands::user_list::tests::parse_users_from_response
+- path: user reactivate
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/user
+  behavior_test: commands::user_reactivate::tests::reactivate_empty_body_serializes
+- path: user remove-membership
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/user
+  behavior_test: commands::user_remove_membership::tests::membership_path_formatting
+- path: user suspend
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/user
+  behavior_test: commands::user_suspend::tests::suspend_body_is_empty_object
+- path: user update
+  execution_class: control-plane
+  happy_path: process-help-contract-and-package-handler-suite
+  invalid_input: unknown-flag-and-required-value-contract
+  authentication: required-or-command-specific
+  output_contract: stable-help-and-handler-json-or-table-contract
+  platform_scope: all-supported-platforms
+  destructive_boundary: none
+  fixture_owner: cli-e2e/user
+  behavior_test: commands::user_update::tests::parse_update_response_with_wrapper

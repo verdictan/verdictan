@@ -1,0 +1,19 @@
+name: subtask-workflow
+description: Workflow with a sub-task reference
+execution_target: platform
+
+steps:
+  - id: prepare
+    action: script
+    parameters: {}
+
+  - id: run_subtask
+    action: sub_task
+    depends_on: [prepare]
+    parameters:
+      task_id: task-existing-001
+
+  - id: finalize
+    action: script
+    depends_on: [run_subtask]
+    parameters: {}

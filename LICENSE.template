@@ -1,0 +1,209 @@
+Parameters
+
+Licensor:             <<REGISTERED-LICENSOR-NAME>>
+
+Licensed Work:        Verdictan Gateway, version <<VERSION>>.
+                      The Licensed Work is the `verdictan` binary and the
+                      `verdictan` crate, together with the source code,
+                      configuration, schema, and documentation published in
+                      this repository at version <<VERSION>>.
+                      The Licensed Work is (c) 2026 <<REGISTERED-LICENSOR-NAME>>
+
+Additional Use Grant: You may make production use of the Licensed Work within
+                      a single legal entity, and only for the internal
+                      business purposes of that same single legal entity.
+
+                      You may not offer the Licensed Work to a third party as
+                      a hosted or managed service.
+
+                      1. DEFINITION OF "SINGLE LEGAL ENTITY"
+
+                      A "single legal entity" is one incorporated or
+                      registered body corporate, or one other single legal
+                      person, identified by its own registration in its own
+                      jurisdiction.
+
+                      An unincorporated part of that same legal entity is not
+                      a separate entity. Examples are a division, a
+                      department, a business unit, a brand, a trading name, an
+                      unincorporated branch office, and a representative
+                      office. Use of the Licensed Work by such a part is use
+                      by the single legal entity.
+
+                      2. DEFINITION OF "THIRD PARTY"
+
+                      A "third party" is any legal person other than the
+                      single legal entity that holds the permitted use.
+
+                      Every other company in the same corporate group is a
+                      third party. This is true even when the group shares one
+                      brand, one board, one procurement function, one identity
+                      provider, or one internal network. The following are
+                      third parties, and this list is not exhaustive:
+
+                        (a) a parent company or holding company;
+                        (b) an intermediate holding company;
+                        (c) a subsidiary, whether wholly owned or partly
+                            owned;
+                        (d) a sister company or other company under common
+                            control;
+                        (e) an affiliate or associated company;
+                        (f) a joint venture company, a special purpose
+                            vehicle, or a consortium member;
+                        (g) a franchisee, a licensee, a distributor, a
+                            reseller, a value-added reseller, or a managed
+                            service provider;
+                        (h) a separately incorporated group entity in another
+                            country;
+                        (i) a portfolio company held by the same investor.
+
+                      Each legal entity that makes production use of the
+                      Licensed Work needs its own permitted use under this
+                      Additional Use Grant, or its own separate commercial
+                      license from the Licensor.
+
+                      An individual is not a third party while that individual
+                      acts for the single legal entity in one of these roles:
+                      an employee, an officer, a director, or an individual
+                      contractor engaged by that entity. A contractor may
+                      operate the Licensed Work for that entity. A contractor
+                      may not operate the Licensed Work for any other entity
+                      under that entity's permitted use.
+
+                      3. DEFINITION OF "HOSTED OR MANAGED SERVICE"
+
+                      You offer the Licensed Work to a third party as a hosted
+                      or managed service when you do any of the following for
+                      that third party, whether or not you charge a fee:
+
+                        (a) you give the third party access to a running
+                            instance of the Licensed Work, including access to
+                            its HTTP endpoints, its proxy endpoints, its
+                            administrative interface, its MCP interface, or
+                            its command line;
+                        (b) you supply the third party with a hosted,
+                            multi-tenant, single-tenant, or dedicated instance
+                            of the Licensed Work;
+                        (c) you install, host, operate, administer, configure,
+                            monitor, upgrade, or provide operational support
+                            for an instance of the Licensed Work that the
+                            third party uses;
+                        (d) you supply a product or service whose described
+                            function is the function of the Licensed Work,
+                            and the Licensed Work performs that function;
+                        (e) you supply an image, an appliance, a template, a
+                            chart, or an installer that embeds the Licensed
+                            Work, and the third party runs it to obtain the
+                            function of the Licensed Work;
+                        (f) you allow a third party to send traffic to, or
+                            configure policy on, an instance of the Licensed
+                            Work that you run.
+
+                      4. USE THAT THIS GRANT PERMITS
+
+                      For the avoidance of doubt, the following are permitted
+                      under this Additional Use Grant:
+
+                        (a) internal production use of the Licensed Work by
+                            the single legal entity for its own business,
+                            including use that supports products and services
+                            that the entity sells to its own customers, when
+                            the entity does not give those customers any of
+                            the access described in paragraph 3;
+                        (b) use of the Licensed Work by employees, officers,
+                            directors, and individual contractors of that
+                            entity, acting for that entity;
+                        (c) non-production use, including development,
+                            testing, evaluation, security research, and
+                            education, by any person;
+                        (d) copying, modification, redistribution, and
+                            non-production use of the source code, as the
+                            unmodified terms of the Business Source License
+                            1.1 permit.
+
+                      5. HOW TO OBTAIN A WIDER RIGHT
+
+                      A commercial license from the Licensor may permit use
+                      that this Additional Use Grant does not permit. Contact
+                      the Licensor.
+
+Change Date:          <<CHANGE-DATE>>
+
+Change License:       Apache License, Version 2.0
+
+--------------------------------------------------------------------------------
+
+Business Source License 1.1
+
+License text copyright (c) 2017 MariaDB Corporation Ab, All Rights Reserved.
+"Business Source License" is a trademark of MariaDB Corporation Ab.
+
+Terms
+
+The Licensor hereby grants you the right to copy, modify, create derivative
+works, redistribute, and make non-production use of the Licensed Work. The
+Licensor may make an Additional Use Grant, above, permitting limited production
+use.
+
+Effective on the Change Date, or the fourth anniversary of the first publicly
+available distribution of a specific version of the Licensed Work under this
+License, whichever comes first, the Licensor hereby grants you rights under the
+terms of the Change License, and the rights granted in the paragraph above
+terminate.
+
+If your use of the Licensed Work does not comply with the requirements currently
+in effect as described in this License, you must purchase a commercial license
+from the Licensor, its affiliated entities, or authorized resellers, or you must
+refrain from using the Licensed Work.
+
+All copies of the original and modified Licensed Work, and derivative works of
+the Licensed Work, are subject to this License. This License applies separately
+for each version of the Licensed Work and the Change Date may vary for each
+version of the Licensed Work released by Licensor.
+
+You must conspicuously display this License on each original or modified copy
+of the Licensed Work. If you receive the Licensed Work in original or modified
+form from a third party, the terms and conditions set forth in this License
+apply to your use of that work.
+
+Any use of the Licensed Work in violation of this License will automatically
+terminate your rights under this License for the current and all other versions
+of the Licensed Work.
+
+This License does not grant you any right in any trademark or logo of Licensor
+or its affiliates (provided that you may use a trademark or logo of Licensor as
+expressly required by this License).
+
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSED WORK IS PROVIDED ON AN
+"AS IS" BASIS. LICENSOR HEREBY DISCLAIMS ALL WARRANTIES AND CONDITIONS, EXPRESS
+OR IMPLIED, INCLUDING (WITHOUT LIMITATION) WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND TITLE.
+
+MariaDB hereby grants you permission to use this License's text to license your
+works, and to refer to it using the trademark "Business Source License", as long
+as you comply with the Covenants of Licensor below.
+
+Covenants of Licensor
+
+In consideration of the right to use this License's text and the "Business
+Source License" name and trademark, Licensor covenants to MariaDB, and to all
+other recipients of the licensed work to be provided by Licensor:
+
+1. To specify as the Change License the GPL Version 2.0 or any later version,
+   or a license that is compatible with GPL Version 2.0 or a later version,
+   where "compatible" means that software provided under the Change License can
+   be included in a program with software provided under GPL Version 2.0 or a
+   later version. Licensor may specify additional Change Licenses without
+   limitation.
+
+2. To either: (a) specify an additional grant of rights to use that does not
+   impose any additional restriction on the right granted in this License, as
+   the Additional Use Grant; or (b) insert the text "None".
+
+3. Not to modify this License in any other way.
+
+Notice
+
+The Business Source License (this document, or the "License") is not an Open
+Source license. However, the Licensed Work will eventually be made available
+under an Open Source License, as stated in this License.
