@@ -1,2 +1,5 @@
 # Deterministic redaction fixture: the test asserts this value never reaches CLI output.
 58a531349aeead57c51e2bf9f0221af7d5f7ee92:src/cli_e2e_tests.rs:generic-api-key:355
+
+# Historical deterministic redaction fixture removed from current source.
+00b0f66ab292028edacdba32efa045b4b7c513c8:src/cli_e2e_tests.rs:generic-api-key:951
