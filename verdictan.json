@@ -6,7 +6,7 @@
   "architecture": {
     "64bit": {
       "url": "https://github.com/verdictan/verdictan/releases/download/v0.1.1/verdictan-x86_64-pc-windows-msvc.zip",
-      "hash": "5c8d0df7116314e2ffbc263b9cf2264c372a4eb78fd3269141825afc231eb56b"
+      "hash": "06d673a051b86c34905bee07c944c912cb0d094e92b4550d9b752c4f6f50969e"
     }
   },
   "bin": "verdictan.exe",
