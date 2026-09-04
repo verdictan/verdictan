@@ -177,8 +177,9 @@ make ci-check
 
 `make ci-check` runs the Jenkins validation commands in sequence with the CI
 environment (`CARGO_HOME`, `RUSTUP_HOME`, `CARGO_TARGET_DIR`, and
-`RUSTFLAGS=-Dwarnings`). `make ci-check-fast` is a compatibility alias.
-Neither target runs the Jenkins-only gitleaks scan or pull-request DCO check.
+`RUSTFLAGS=-Dwarnings`). Use `make ci-check-fast` to skip the redundant local
+`all-features` nextest lane. Neither target runs the Jenkins-only gitleaks scan
+or pull-request DCO check.
 
 ### Canonical Rust build directories
 
@@ -223,18 +224,25 @@ Linux runners.
 
 | Lane | Command | Purpose |
 | --- | --- | --- |
-| Default | `make test-default` | Nextest with all optional features |
+| Default | `make test-default` | `cargo check --tests` and nextest with all optional features |
 | Distributed | `make test-distributed` | `distributed` only (`--no-default-features`) |
 | OTLP | `make test-otlp` | `otlp` only (`--no-default-features`) |
 | External embedding | `make test-embedding-external` | `embedding-external` only (`--no-default-features`) |
+| All features | `make test-all-features` | Explicit `--all-features` compatibility check |
 
-Use `make clippy` for the default lane. Use `make clippy-production` for the
-three isolated feature lanes without `--all-targets`.
+Use `make clippy-production` to lint the default lane and the three isolated
+feature lanes without `--all-targets`.
 
 ### Platform Tests
 
-Run the default lane on a Linux or macOS host to prove tests behind
-`#[cfg(unix)]`. A non-Unix build cannot prove Unix-only behavior.
+Tests behind `#[cfg(unix)]` must run on a Unix execution lane:
+
+```bash
+make test-unix
+```
+
+The `test-unix` target is an alias for `test-default`. Run it on a Linux or
+macOS host. A non-Unix build cannot prove Unix-only behavior.
 
 ## Release And CI Automation
 

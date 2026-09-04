@@ -36,21 +36,6 @@ make test-default
 make clippy
 ```
 
-### Runtime payload build inputs
-
-`make runtime-payload` reads build identity values from the environment. The
-CLI does not read these values at runtime.
-
-- `SOURCE_SHA` identifies the exact source commit.
-- `SOURCE_DATE_EPOCH` sets normalized payload timestamps.
-- `BUILD_INPUT_DIGEST` identifies the trusted planner inputs.
-- `TOOLCHAIN_ID` identifies the cargo-dist Rust toolchain.
-- `BUILDER_ID` identifies the trusted package builder.
-- `INVOCATION_ID` identifies the build invocation.
-
-Set `CLI_DIST_BINARY` as a Make variable when cargo-dist uses a nondefault
-location. The default is `target/<target>/dist/verdictan`.
-
 ### Windows MSVC build requirements
 
 Windows artifacts use `x86_64-pc-windows-msvc`. Cross-compilation from Linux

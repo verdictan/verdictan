@@ -1,64 +1,65 @@
-# Verdictan
+# Verdictan Gateway CLI
 
-- Website: https://verdictan.com
-- Documentation: [https://docs.verdictan.com](https://docs.verdictan.com)
-- Releases: [GitHub Releases](https://github.com/verdictan/verdictan/releases)
-- Package: [crates.io](https://crates.io/crates/verdictan)
-- Security: [Security policy](SECURITY.md)
-
-<p align="center">
-  <img src="https://verdictan.com/brand/wordmark.svg" alt="Verdictan" width="600px">
-</p>
-
-Verdictan is a source-available AI governance gateway. It runs between AI
-applications and model providers. The gateway applies policy, routes traffic,
-protects provider credentials, and records decision evidence.
-
-The key features of Verdictan are:
-
-- **Policy as Config**: Define gateway behavior in YAML. Validate, lint, and
-  test policy config before deployment.
-
-- **Governed Model Traffic**: Apply authentication and policy to supported
-  model request families. Verdictan supports OpenAI-compatible,
-  Anthropic-compatible, WebSocket, and MCP traffic.
-
-- **Provider Routing**: Route requests to configured provider targets. Keep
-  provider credentials outside policy YAML.
-
-- **Runtime Controls**: Enforce configured rate limits, budgets, data controls,
-  cache rules, and provider access requirements.
-
-- **Decision Evidence**: Record events, History sessions, metrics, and audit
-  evidence for governed requests.
-
-For more information, read the
-[CLI overview](https://docs.verdictan.com/docs/cli/overview).
-
-## Getting Started & Documentation
-
-Documentation is available on the
-[Verdictan documentation site](https://docs.verdictan.com):
-
-- [Install the Gateway](https://docs.verdictan.com/docs/install-gateway)
-- [CLI Overview](https://docs.verdictan.com/docs/cli/overview)
-- [Config Validation](https://docs.verdictan.com/docs/cli/config-validation)
-- [Policy Lifecycle](https://docs.verdictan.com/docs/cli/policy-lifecycle)
-- [Gateway Administration](https://docs.verdictan.com/docs/cli/gateway-admin)
-
-
-## Developing Verdictan
-
-- To compile Verdictan and contribute changes, read
-  [CONTRIBUTING.md](CONTRIBUTING.md).
-- To review runtime configuration, read
-  [ENVIRONMENT.md](ENVIRONMENT.md).
-- To report a bug or request a feature, use
-  [GitHub Issues](https://github.com/verdictan/verdictan/issues).
-- To report an unpatched vulnerability, follow
-  [SECURITY.md](SECURITY.md). Do not open a public issue.
-
+Verdictan is a source-available AI governance gateway. This repository
+publishes the `verdictan` binary and the `verdictan` crate.
 
 ## License
 
-[Business Source License 1.1](LICENSE)
+Verdictan Gateway CLI is **source available** under the Business Source License
+1.1 (BUSL-1.1). 
+For commercial use outside the Additional Use Grant, contact Verdictan.com
+
+## Install
+
+| Channel | Command |
+| --- | --- |
+| Homebrew | `brew tap verdictan/verdictan https://github.com/verdictan/verdictan` then `brew install verdictan` |
+| Scoop | `scoop bucket add verdictan https://github.com/verdictan/verdictan` then `scoop install verdictan` |
+| Shell (Linux/macOS) | `curl --proto '=https' --tlsv1.2 -LsSf https://github.com/verdictan/verdictan/releases/latest/download/verdictan-installer.sh \| sh` |
+| PowerShell (Windows) | `irm https://github.com/verdictan/verdictan/releases/latest/download/verdictan-installer.ps1 \| iex` |
+| Zip (Windows) | Download `verdictan-x86_64-pc-windows-msvc.zip` from [GitHub Releases](https://github.com/verdictan/verdictan/releases) |
+| Debian package (x86_64 Linux) | `sudo dpkg -i verdictan-x86_64-unknown-linux-gnu.deb` after you download the asset from [GitHub Releases](https://github.com/verdictan/verdictan/releases) |
+| RPM package (x86_64 Linux) | `sudo rpm -i verdictan-x86_64-unknown-linux-gnu.rpm` after you download the asset from [GitHub Releases](https://github.com/verdictan/verdictan/releases) |
+| Container (GHCR) | `docker pull ghcr.io/verdictan/verdictan:latest` |
+| Container (Docker Hub) | `docker pull verdictan/verdictan:latest` |
+| crates.io | `cargo install verdictan` |
+
+The Debian package and the RPM package install the binary at
+`/usr/local/bin/verdictan`. The asset names hold no version number. Read the
+release tag on the GitHub Releases page to identify the version. The package
+metadata inside each file still holds the exact version.
+
+After install, register a gateway service with `verdictan gateway install`.
+Use `verdictan gateway upgrade` for service-managed upgrades. Do not run
+`verdictan-update` on Homebrew, Scoop, or container installs; use the package
+manager or pull a new image instead.
+
+## Development
+
+Default builds enable all optional features (`distributed`, `otlp`,
+`embedding-external`). Use `--no-default-features` when you need a minimal build.
+
+```bash
+make check
+make test-default
+make fmt-check
+make clippy
+```
+
+See `AGENTS.md` for the full validation matrix and isolated per-feature lanes.
+
+## Policy schema
+
+The compile-time policy schema lives at `schema/policy-configuration.schema.json`.
+Each release publishes the same file as a release artifact for downstream digest
+checks.
+
+## Security
+
+Report vulnerabilities through `SECURITY.md`.
+
+## Contributing
+
+Read `CONTRIBUTING.md` before opening a pull request. Every commit needs a
+Developer Certificate of Origin sign-off.
+

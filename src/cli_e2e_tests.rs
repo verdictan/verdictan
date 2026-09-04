@@ -948,18 +948,14 @@ fn cli_e2e_process_covers_help_version_invalid_and_every_leaf() {
         );
     }
 
-    let secret = ["verdictan-e2e", "fixture", "must-never-appear"].join("-");
-    let help = harness.run_with_env(
-        binary,
-        ["--help"],
-        [("VERDICTAN_API_TOKEN", secret.as_str())],
-    );
+    let secret = "verdictan-e2e-secret-that-must-never-appear";
+    let help = harness.run_with_env(binary, ["--help"], [("VERDICTAN_API_TOKEN", secret)]);
     assert_eq!(help.status, 0, "{}", help.stderr);
-    harness.assert_secret_absent(&help, &secret);
+    harness.assert_secret_absent(&help, secret);
 
-    let removed_secret_flag = harness.run(binary, ["--api-token", secret.as_str(), "doctor"]);
+    let removed_secret_flag = harness.run(binary, ["--api-token", secret, "doctor"]);
     assert_ne!(removed_secret_flag.status, 0);
-    harness.assert_secret_absent(&removed_secret_flag, &secret);
+    harness.assert_secret_absent(&removed_secret_flag, secret);
 
     #[cfg(not(target_os = "macos"))]
     {

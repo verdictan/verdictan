@@ -1,22 +1,17 @@
 .PHONY: help check fmt fmt-check clippy clippy-production test test-default test-doc \
-        test-distributed test-otlp test-embedding-external \
+        test-distributed test-otlp test-embedding-external test-all-features \
         cli-e2e cli-e2e-inventory cli-e2e-in-process cli-e2e-process \
         ci-check-cli-e2e coverage-clean coverage-test coverage-report coverage-check \
-        runtime-payload runtime-payload-verify runtime-payload-test runtime-image \
-        runtime-image-verify deny spdx-check third-party-check \
+        test-unix deny spdx-check third-party-check \
         ci-check ci-check-fast ci-check-fmt ci-check-clippy-all-targets \
-        ci-check-clippy-production ci-check-compile ci-check-test-default \
-        ci-check-test-distributed ci-check-test-otlp \
-        ci-check-test-embedding-external ci-check-doc ci-check-deny \
-        ci-check-spdx ci-check-third-party
+        ci-check-clippy-production ci-check-test-default ci-check-test-distributed \
+        ci-check-test-otlp ci-check-test-embedding-external ci-check-test-all-features \
+        ci-check-test-unix ci-check-doc ci-check-deny ci-check-spdx ci-check-third-party
 
 CARGO ?= cargo
 NEXTEST ?= cargo nextest
 COVERAGE_TOOLCHAIN ?= nightly-2026-08-30
 CLIPPY ?= cargo clippy
-CLI_TARGET ?= x86_64-unknown-linux-gnu
-CLI_DIST_BINARY ?= target/$(CLI_TARGET)/dist/verdictan
-CLI_PAYLOAD_DIR ?= dist-payload/cli
 
 CI_CARGO_HOME ?= /mnt/Work/verdictan/cargo
 CI_RUSTUP_HOME ?= /mnt/Work/verdictan/rustup
@@ -35,23 +30,23 @@ help:
 	@echo "  make fmt                cargo fmt"
 	@echo "  make fmt-check          cargo fmt --check"
 	@echo "  make clippy             cargo clippy --all-targets -- -D warnings"
-	@echo "  make clippy-production  cargo clippy for isolated feature lanes"
+	@echo "  make clippy-production  cargo clippy without --all-targets (default + isolated lanes)"
 	@echo "  make test-default       nextest with default features (all optional features on)"
 	@echo "  make test-doc           cargo test --doc"
 	@echo "  make test-distributed   nextest with distributed only (--no-default-features)"
 	@echo "  make test-otlp          nextest with otlp only (--no-default-features)"
 	@echo "  make test-embedding-external  nextest with embedding-external only (--no-default-features)"
+	@echo "  make test-all-features  nextest with --all-features (same as default today)"
+	@echo "  make test-unix          alias for test-default on Unix hosts"
 	@echo "  make deny               cargo deny check"
 	@echo "  make spdx-check         verify SPDX headers in src/"
 	@echo "  make third-party-check  verify THIRD_PARTY_NOTICES.md"
-	@echo "  make runtime-payload    pack a prebuilt cargo-dist Linux binary"
-	@echo "  make runtime-payload-verify  verify the payload manifest and hashes"
-	@echo "  make runtime-image      assemble the verified payload without Cargo"
 	@echo ""
 	@echo "Jenkins CI mirror:"
 	@echo "  make ci-check           full CI sequence: fmt, clippy matrix, nextest ci profile"
 	@echo "                          lanes, doc tests, deny, SPDX, third-party notices"
-	@echo "  make ci-check-fast      compatibility alias for ci-check"
+	@echo "  make ci-check-fast      same as ci-check but skips redundant all-features lane"
+	@echo "                          nextest lanes"
 	@echo "  Excludes: gitleaks secret scan (self-hosted CI only), DCO (PR only)"
 
 check:
@@ -67,11 +62,12 @@ clippy:
 	$(CLIPPY) --all-targets -- -D warnings
 
 clippy-production:
+	$(CLIPPY) -- -D warnings
 	$(CLIPPY) --no-default-features --features distributed -- -D warnings
 	$(CLIPPY) --no-default-features --features otlp -- -D warnings
 	$(CLIPPY) --no-default-features --features embedding-external -- -D warnings
 
-test-default:
+test-default: check
 	$(NEXTEST) run --profile fast
 
 test-doc:
@@ -85,6 +81,11 @@ test-otlp:
 
 test-embedding-external:
 	$(NEXTEST) run --profile fast --no-default-features --features embedding-external
+
+test-all-features:
+	$(NEXTEST) run --profile fast --all-features
+
+test-unix: test-default
 
 cli-e2e-inventory:
 	mkdir -p reports/quality
@@ -173,52 +174,17 @@ spdx-check:
 third-party-check:
 	bash ci/scripts/check_third_party_notices.sh
 
-runtime-payload:
-	@set -eu; \
-	  : "$${SOURCE_SHA:?SOURCE_SHA is required}"; \
-	  : "$${SOURCE_DATE_EPOCH:?SOURCE_DATE_EPOCH is required}"; \
-	  : "$${BUILD_INPUT_DIGEST:?BUILD_INPUT_DIGEST is required}"; \
-	  : "$${TOOLCHAIN_ID:?TOOLCHAIN_ID is required}"; \
-	  : "$${BUILDER_ID:?BUILDER_ID is required}"; \
-	  : "$${INVOCATION_ID:?INVOCATION_ID is required}"; \
-	  python3 ci/scripts/runtime_payload.py pack \
-	    --repo-root . \
-	    --binary "$(CLI_DIST_BINARY)" \
-	    --output "$(CLI_PAYLOAD_DIR)" \
-	    --target "$(CLI_TARGET)" \
-	    --source-sha "$$SOURCE_SHA" \
-	    --source-date-epoch "$$SOURCE_DATE_EPOCH" \
-	    --build-input-digest "$$BUILD_INPUT_DIGEST" \
-	    --toolchain "$$TOOLCHAIN_ID" \
-	    --runtime-base "debian:bookworm-slim@sha256:88200866dfff7ea7f5cbcb6ec7c8a701889efe6fe859fe64d6990e4b07ea4171" \
-	    --builder-id "$$BUILDER_ID" \
-	    --invocation-id "$$INVOCATION_ID"
-
-runtime-payload-verify:
-	python3 ci/scripts/runtime_payload.py verify "$(CLI_PAYLOAD_DIR)"
-
-runtime-payload-test:
-	python3 ci/scripts/runtime_payload.py self-test
-
-runtime-image: runtime-payload-verify
-	@set -eu; : "$${IMAGE:?IMAGE is required}"; \
-	  docker build --load --file Dockerfile.hosted \
-	    --build-arg CLI_PAYLOAD_DIR="$(CLI_PAYLOAD_DIR)" \
-	    --tag "$$IMAGE" .
-
-runtime-image-verify: runtime-payload-verify
-	python3 ci/scripts/runtime_payload.py verify-image \
-	  --image "$${IMAGE:?IMAGE is required}" \
-	  "$(CLI_PAYLOAD_DIR)"
-
 # --- Jenkins CI mirror ------------------------------------------------------
 
-ci-check: ci-check-fmt ci-check-clippy-all-targets ci-check-clippy-production ci-check-compile \
+ci-check: ci-check-fmt ci-check-clippy-all-targets ci-check-clippy-production \
 	ci-check-test-default ci-check-test-distributed ci-check-test-otlp \
-	ci-check-test-embedding-external \
+	ci-check-test-embedding-external ci-check-test-all-features ci-check-test-unix \
 	ci-check-doc ci-check-deny ci-check-spdx ci-check-third-party
 
-ci-check-fast: ci-check
+ci-check-fast: ci-check-fmt ci-check-clippy-all-targets ci-check-clippy-production \
+	ci-check-test-default ci-check-test-distributed ci-check-test-otlp \
+	ci-check-test-embedding-external ci-check-doc ci-check-deny ci-check-spdx \
+	ci-check-third-party
 
 ci-check-fmt:
 	$(CI_ENV) $(CARGO) fmt --check
@@ -227,24 +193,34 @@ ci-check-clippy-all-targets:
 	$(CI_ENV) $(CLIPPY) --all-targets -- -D warnings
 
 ci-check-clippy-production:
+	$(CI_ENV) $(CLIPPY) -- -D warnings
 	$(CI_ENV) $(CLIPPY) --no-default-features --features distributed -- -D warnings
 	$(CI_ENV) $(CLIPPY) --no-default-features --features otlp -- -D warnings
 	$(CI_ENV) $(CLIPPY) --no-default-features --features embedding-external -- -D warnings
 
-ci-check-compile:
-	$(CI_ENV) $(CARGO) check --tests
-
 ci-check-test-default:
+	$(CI_ENV) $(CARGO) check --tests
 	$(CI_ENV) $(NEXTEST) run --profile ci-default
 
 ci-check-test-distributed:
+	$(CI_ENV) $(CARGO) check --tests
 	$(CI_ENV) $(NEXTEST) run --profile ci-distributed --no-default-features --features distributed
 
 ci-check-test-otlp:
+	$(CI_ENV) $(CARGO) check --tests
 	$(CI_ENV) $(NEXTEST) run --profile ci-otlp --no-default-features --features otlp
 
 ci-check-test-embedding-external:
+	$(CI_ENV) $(CARGO) check --tests
 	$(CI_ENV) $(NEXTEST) run --profile ci-embedding-external --no-default-features --features embedding-external
+
+ci-check-test-all-features:
+	$(CI_ENV) $(CARGO) check --tests
+	$(CI_ENV) $(NEXTEST) run --profile ci-all-features --all-features
+
+ci-check-test-unix:
+	$(CI_ENV) $(CARGO) check --tests
+	$(CI_ENV) $(NEXTEST) run --profile ci
 
 ci-check-doc:
 	$(CI_ENV) $(CARGO) test --doc

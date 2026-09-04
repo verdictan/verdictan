@@ -20,13 +20,7 @@ mod tests {
 
     /// Documented host-build and release-pipeline variables that the runtime crate does not read.
     const DOCUMENTED_BUILD_ONLY_ALLOWLIST: &[&str] = &[
-        "BUILDER_ID",
-        "BUILD_INPUT_DIGEST",
         "CARGO_TARGET_DIR",
-        "INVOCATION_ID",
-        "SOURCE_DATE_EPOCH",
-        "SOURCE_SHA",
-        "TOOLCHAIN_ID",
         "VERDICTAN_DISTRIB_REMOTE_HOST",
         "VERDICTAN_DISTRIB_REMOTE_ROOT",
         "VERDICTAN_ISOLATED_CARGO_TARGET",

@@ -14,7 +14,6 @@ coverage/
 # Release pipeline output written at the repository root
 /artifacts/
 /dist-artifacts/
-/dist-payload/
 /dist-manifest.json
 /plan-dist-manifest.json
 /*.cdx.xml
@@ -22,4 +21,3 @@ coverage/
 # RustRover
 #.idea/
 /reports/quality/
-/reports/gitleaks.sarif
