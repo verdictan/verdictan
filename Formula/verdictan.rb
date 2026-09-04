@@ -1,7 +1,6 @@
 class Verdictan < Formula
-  desc "Verdictan AI governance gateway"
+  desc "AI governance gateway"
   homepage "https://verdictan.com"
-  version "0.1.1"
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/verdictan/verdictan/releases/download/v0.1.1/verdictan-aarch64-apple-darwin.tar.gz"
@@ -25,12 +24,12 @@ class Verdictan < Formula
   license "BUSL-1.1"
 
   BINARY_ALIASES = {
-    "aarch64-apple-darwin": {},
+    "aarch64-apple-darwin":      {},
     "aarch64-unknown-linux-gnu": {},
-    "x86_64-apple-darwin": {},
-    "x86_64-pc-windows-gnu": {},
-    "x86_64-unknown-linux-gnu": {}
-  }
+    "x86_64-apple-darwin":       {},
+    "x86_64-pc-windows-gnu":     {},
+    "x86_64-unknown-linux-gnu":  {},
+  }.freeze
 
   def target_triple
     cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
@@ -70,5 +69,9 @@ class Verdictan < Formula
     # Install any leftover files in pkgshare; these are probably config or
     # sample files.
     pkgshare.install(*leftover_contents) unless leftover_contents.empty?
+  end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/verdictan --version")
   end
 end
