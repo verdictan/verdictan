@@ -379,7 +379,7 @@ The Licensed Work itself is under BUSL-1.1. See [LICENSE](LICENSE).
 | utf8_iter | 1.0.4 | Apache-2.0 OR MIT |
 | utf8parse | 0.2.2 | Apache-2.0 OR MIT |
 | uuid | 1.26.0 | Apache-2.0 OR MIT |
-| verdictan | 0.1.0 | BUSL-1.1 |
+| verdictan | 0.1.1 | BUSL-1.1 |
 | version_check | 0.9.5 | MIT OR Apache-2.0 |
 | vsimd | 0.8.0 | MIT |
 | walkdir | 2.5.0 | Unlicense OR MIT |
