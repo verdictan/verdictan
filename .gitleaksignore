@@ -4,3 +4,6 @@
 # Historical deterministic redaction fixtures removed from current source.
 00b0f66ab292028edacdba32efa045b4b7c513c8:src/cli_e2e_tests.rs:generic-api-key:951
 87287c80e4a3495720e29a8ee9325d09fc841036:src/cli_e2e_tests.rs:generic-api-key:951
+
+# Public OpenPGP package-repository key fingerprint, verified by distribution gates.
+985e4e954740a185342dd6c4c2f9ca108a841469:ci/distribution-support.json:generic-api-key:22
