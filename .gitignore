@@ -17,6 +17,15 @@ coverage/
 /dist-manifest.json
 /plan-dist-manifest.json
 /*.cdx.xml
+/snap/local/*.tar.gz
+/snap/local/*.sha256
+/snap-output/
+/snap.hcl
+/.craft/
+/parts/
+/prime/
+/stage/
+/flatpak-output/
 
 # RustRover
 #.idea/

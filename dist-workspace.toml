@@ -46,9 +46,8 @@ build = ["bash", "ci/scripts/stage_policy_schema_artifact.sh"]
 # It expands no glob and no version template. Each build script must stage its
 # output under `dist-artifacts/` with the constant name that is declared here.
 [[dist.extra-artifacts]]
-artifacts = ["dist-artifacts/verdictan-x86_64-unknown-linux-gnu.deb"]
-build = ["bash", "ci/scripts/release_extra_deb.sh"]
-
-[[dist.extra-artifacts]]
-artifacts = ["dist-artifacts/verdictan-x86_64-unknown-linux-gnu.rpm"]
-build = ["bash", "ci/scripts/release_extra_rpm.sh"]
+artifacts = [
+    "dist-artifacts/verdictan-x86_64-unknown-linux-gnu.deb",
+    "dist-artifacts/verdictan-x86_64-unknown-linux-gnu.rpm",
+]
+build = ["bash", "ci/scripts/release_extra_linux_packages.sh"]

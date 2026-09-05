@@ -2,11 +2,12 @@
         test-distributed test-otlp test-embedding-external test-all-features \
         cli-e2e cli-e2e-inventory cli-e2e-in-process cli-e2e-process \
         ci-check-cli-e2e coverage-clean coverage-test coverage-report coverage-check \
-        test-unix deny spdx-check third-party-check \
+        test-unix deny spdx-check third-party-check distribution-manifests-check \
         ci-check ci-check-fast ci-check-fmt ci-check-clippy-all-targets \
         ci-check-clippy-production ci-check-test-default ci-check-test-distributed \
         ci-check-test-otlp ci-check-test-embedding-external ci-check-test-all-features \
-        ci-check-test-unix ci-check-doc ci-check-deny ci-check-spdx ci-check-third-party
+        ci-check-test-unix ci-check-doc ci-check-deny ci-check-spdx ci-check-third-party \
+        ci-check-distribution-manifests
 
 CARGO ?= cargo
 NEXTEST ?= cargo nextest
@@ -41,6 +42,7 @@ help:
 	@echo "  make deny               cargo deny check"
 	@echo "  make spdx-check         verify SPDX headers in src/"
 	@echo "  make third-party-check  verify THIRD_PARTY_NOTICES.md"
+	@echo "  make distribution-manifests-check  verify package repository, Snapcraft, Flatpak, and WinGet metadata"
 	@echo ""
 	@echo "Jenkins CI mirror:"
 	@echo "  make ci-check           full CI sequence: fmt, clippy matrix, nextest ci profile"
@@ -174,17 +176,21 @@ spdx-check:
 third-party-check:
 	bash ci/scripts/check_third_party_notices.sh
 
+distribution-manifests-check:
+	ruby ci/scripts/verify_distribution_manifests.rb
+
 # --- Jenkins CI mirror ------------------------------------------------------
 
 ci-check: ci-check-fmt ci-check-clippy-all-targets ci-check-clippy-production \
 	ci-check-test-default ci-check-test-distributed ci-check-test-otlp \
 	ci-check-test-embedding-external ci-check-test-all-features ci-check-test-unix \
-	ci-check-doc ci-check-deny ci-check-spdx ci-check-third-party
+	ci-check-doc ci-check-deny ci-check-spdx ci-check-third-party \
+	ci-check-distribution-manifests
 
 ci-check-fast: ci-check-fmt ci-check-clippy-all-targets ci-check-clippy-production \
 	ci-check-test-default ci-check-test-distributed ci-check-test-otlp \
 	ci-check-test-embedding-external ci-check-doc ci-check-deny ci-check-spdx \
-	ci-check-third-party
+	ci-check-third-party ci-check-distribution-manifests
 
 ci-check-fmt:
 	$(CI_ENV) $(CARGO) fmt --check
@@ -233,3 +239,6 @@ ci-check-spdx:
 
 ci-check-third-party:
 	$(CI_ENV) bash ci/scripts/check_third_party_notices.sh
+
+ci-check-distribution-manifests:
+	ruby ci/scripts/verify_distribution_manifests.rb

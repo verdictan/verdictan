@@ -277,13 +277,12 @@ with the constant file name that `dist-workspace.toml` declares:
 | Script | Staged artifact |
 | --- | --- |
 | `stage_policy_schema_artifact.sh` | `dist-artifacts/policy-configuration.schema.json` |
-| `release_extra_deb.sh` | `dist-artifacts/verdictan-x86_64-unknown-linux-gnu.deb` |
-| `release_extra_rpm.sh` | `dist-artifacts/verdictan-x86_64-unknown-linux-gnu.rpm` |
+| `release_extra_linux_packages.sh` | `dist-artifacts/verdictan-x86_64-unknown-linux-gnu.deb` and `.rpm` |
 
-`cargo deb` and `cargo generate-rpm` write version-stamped names by default, so
-each script passes `--output` with the constant path. The release asset name
-holds no version number. The release tag identifies the version, and the package
-metadata inside each file keeps the exact version.
+`release_extra_linux_packages.sh` builds both packages with a GLIBC 2.17
+baseline. This baseline supports the listed repository distribution families.
+The package tools write version-stamped names by default. The script passes
+`--output` with each constant path. The release tag identifies the version.
 
 The `dist-artifacts/` directory is release build output. `.gitignore` covers it
 together with `artifacts/`, `dist-manifest.json`, `plan-dist-manifest.json`, and

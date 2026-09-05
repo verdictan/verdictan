@@ -1,0 +1,65 @@
+name: verdictan
+title: Verdictan
+adopt-info: verdictan
+summary: Govern AI traffic with policy, routing, and decision evidence
+description: |
+  Verdictan is a command-line interface and gateway for governing supported AI
+  model traffic. It applies configured request and response policies, routes
+  requests to configured providers, protects provider credentials, and records
+  decision evidence.
+
+  Use the CLI to validate policy configuration, administer Verdictan resources,
+  and run a strictly confined foreground gateway. The snap stores its own
+  configuration under its snap-specific home directory and updates through
+  snapd.
+license: BUSL-1.1
+type: app
+icon: snap/gui/icon.svg
+website: https://verdictan.com
+source-code: https://github.com/verdictan/verdictan
+issues: https://github.com/verdictan/verdictan/issues
+contact:
+  - https://github.com/verdictan/verdictan/issues
+base: core24
+grade: stable
+confinement: strict
+compression: xz
+
+platforms:
+  amd64:
+    build-on: [amd64]
+    build-for: [amd64]
+  arm64:
+    build-on: [amd64]
+    build-for: [arm64]
+
+apps:
+  verdictan:
+    command: bin/verdictan
+    plugs:
+      - home
+      - network
+      - network-bind
+      - removable-media
+
+parts:
+  verdictan:
+    plugin: nil
+    override-build: |
+      set -eu
+      case "$CRAFT_ARCH_BUILD_FOR" in
+        amd64) target=x86_64-unknown-linux-gnu ;;
+        arm64) target=aarch64-unknown-linux-gnu ;;
+        *) echo "Unsupported Snap architecture: $CRAFT_ARCH_BUILD_FOR" >&2; exit 1 ;;
+      esac
+      archive="$CRAFT_PROJECT_DIR/snap/local/verdictan-${target}.tar.gz"
+      test -f "$archive"
+      unpack_dir="$CRAFT_PART_BUILD/unpacked"
+      mkdir -p "$unpack_dir"
+      tar -xzf "$archive" --strip-components=1 -C "$unpack_dir"
+      install -Dm0755 "$unpack_dir/verdictan" "$CRAFT_PART_INSTALL/bin/verdictan"
+      install -Dm0644 "$unpack_dir/LICENSE" \
+        "$CRAFT_PART_INSTALL/share/doc/verdictan/LICENSE"
+      install -Dm0644 "$unpack_dir/THIRD_PARTY_NOTICES.md" \
+        "$CRAFT_PART_INSTALL/share/doc/verdictan/THIRD_PARTY_NOTICES.md"
+      craftctl set version="$VERDICTAN_SNAP_VERSION"

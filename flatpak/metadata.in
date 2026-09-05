@@ -1,0 +1,9 @@
+[Application]
+name=com.verdictan.Verdictan
+runtime=org.freedesktop.Platform/@ARCH@/25.08
+sdk=org.freedesktop.Sdk/@ARCH@/25.08
+command=verdictan
+
+[Context]
+shared=network;
+filesystems=host;

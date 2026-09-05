@@ -1,0 +1,34 @@
+{
+  "snapcraft": {
+    "enabled": true,
+    "package": "verdictan",
+    "channel": "latest/stable"
+  },
+  "winget": {
+    "enabled": true,
+    "package": "Verdictan.Verdictan",
+    "repository": "microsoft/winget-pkgs"
+  },
+  "flatpak": {
+    "enabled": true,
+    "application": "com.verdictan.Verdictan",
+    "architectures": ["x86_64"],
+    "delivery": "github-release-bundle"
+  },
+  "linux_package_repositories": {
+    "enabled": true,
+    "repository": "verdictan/packages",
+    "base_url": "https://verdictan.github.io/packages",
+    "signing_key_fingerprint": "FBA05B9F2E1EB214BFC52BA2FDED465F123CF517",
+    "apt": {
+      "architectures": ["amd64"],
+      "suite": "stable",
+      "component": "main",
+      "distributions": ["Ubuntu", "Debian"]
+    },
+    "rpm": {
+      "architectures": ["x86_64"],
+      "distributions": ["CentOS", "RHEL", "Fedora", "Amazon Linux 2023"]
+    }
+  }
+}

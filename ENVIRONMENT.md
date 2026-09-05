@@ -64,8 +64,30 @@ directory to `PATH` for the later steps of the job.
 The Windows release artifact is `verdictan-x86_64-pc-windows-msvc.zip`. That
 archive holds `verdictan.exe` and `verdictan-update.exe`. The Linux host builds
 both executables and the archive. The release pipeline publishes no Windows MSI
-package. Windows users install with the PowerShell installer, with Scoop, or
-from the zip archive.
+package. Windows users install with the PowerShell installer, Scoop, WinGet, or
+the zip archive.
+
+The trusted release pipeline publishes `amd64` and `arm64` snaps to
+`latest/stable`. The snap uses strict confinement with access to
+the network, listening sockets, non-hidden files in the user's home directory,
+and manually connected removable media. It stores its own configuration under
+the snap-specific home directory. Host service installation and in-place
+self-update are not supported from the confined package; use `snap refresh` to
+update it.
+
+The trusted release pipeline submits `Verdictan.Verdictan` manifests to
+`microsoft/winget-pkgs`.
+
+The release pipeline builds an x86-64 Flatpak bundle and publishes it as a
+signed GitHub release asset. It does not submit Verdictan to Flathub. The bundle
+uses Flathub only to locate the Freedesktop runtime during installation. See
+`flatpak/README.md` for the install command and permissions.
+
+The trusted release pipeline publishes signed APT and RPM repositories to
+`verdictan/packages`. GitHub Pages serves the repository from
+`https://verdictan.github.io/packages`. The APT repository supports Debian and
+Ubuntu on `amd64`. The RPM repository supports compatible CentOS, RHEL, Fedora,
+and Amazon Linux 2023 systems on `x86_64`.
 
 Release builds must not set `AWS_LC_SYS_NO_ASM`.
 

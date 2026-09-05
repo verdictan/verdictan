@@ -44,6 +44,28 @@ Documentation is available on the
 - [Policy Lifecycle](https://docs.verdictan.com/docs/cli/policy-lifecycle)
 - [Gateway Administration](https://docs.verdictan.com/docs/cli/gateway-admin)
 
+## Linux Package Repositories
+
+Install the signing key on Debian or Ubuntu:
+
+```bash
+curl -fsSL https://verdictan.github.io/packages/keys/verdictan-packages.asc |
+  sudo gpg --dearmor --yes -o /usr/share/keyrings/verdictan-packages.gpg
+curl -fsSL https://verdictan.github.io/packages/apt/verdictan.list |
+  sudo tee /etc/apt/sources.list.d/verdictan.list >/dev/null
+sudo apt update
+sudo apt install verdictan
+```
+
+Install the repository on CentOS, RHEL, Fedora, or Amazon Linux 2023:
+
+```bash
+sudo curl -fsSL https://verdictan.github.io/packages/rpm/verdictan.repo \
+  -o /etc/yum.repos.d/verdictan.repo
+sudo dnf install verdictan-gateway
+```
+
+The current repositories publish packages for x86-64 systems.
 
 ## Developing Verdictan
 

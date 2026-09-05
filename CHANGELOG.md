@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+- Add automated, strictly confined Snap Store packaging and publication for
+  AMD64 and ARM64.
+- Add a signed x86-64 Flatpak bundle to each GitHub release.
+- Add deterministic WinGet manifests and community repository submission.
+- Add signed APT and RPM repositories for supported Linux distributions.
+
 ## 0.1.1 (2026-09-04)
 
 First complete public release of the Verdictan gateway CLI.
