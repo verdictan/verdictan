@@ -19,6 +19,24 @@ runtime:
 The CLI has two roles: operator tool and data-plane gateway process. Keep the
 two roles specified in code and docs.
 
+## Public Repository Content
+
+This repository is public. Apply these rules to comments, documentation,
+examples, agent instructions, templates, and generated text:
+
+- Do not add internal operational instructions or infrastructure details.
+- Exclude credential identifiers, credential storage locations, private hostnames,
+  runner paths, SSH provisioning steps, and internal release or recovery procedures.
+- Keep internal runbooks with their owning private repository.
+- Keep public installation, configuration, build, and contribution instructions
+  that users need. Use generic examples for infrastructure details.
+- Preserve required configuration identifiers and executable behavior when you
+  remove internal prose.
+- Review changed text for internal details before you complete the task.
+- Check generated and copied text, including package repository documentation.
+  Correct the source and its published copy together.
+- Do not repeat removed internal identifiers as examples of prohibited content.
+
 ## Read Before Editing
 
 - `README.md`
